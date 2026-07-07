@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professor — Barracred Conecta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<link rel="stylesheet" href="/src/styles/base.css">
+<link rel="stylesheet" href="/src/styles/layout.css">
+<style>
+.prof-dash { padding: 60px 0; }
+.prof-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.prof-header h1 { font-size: clamp(26px, 3vw, 36px); color: var(--green-dark); }
+.prof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  background: var(--coral-orange);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-weight: 600;
+}
+.prof-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 48px; }
+.prof-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 20px;
+  transition: transform .3s ease;
+}
+.prof-stat-card:hover { transform: translateY(-4px); }
+.prof-stat-card b { font-family: var(--display); font-size: 32px; color: var(--green-dark); display: block; }
+.prof-stat-card span { font-size: 12.5px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; font-family: var(--mono); }
+.prof-stat-card .stat-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--bg-soft); display: flex;
+  align-items: center; justify-content: center;
+  color: var(--green); margin-bottom: 12px;
+}
+
+.prof-section { margin-bottom: 48px; }
+.prof-section h3 { margin-bottom: 20px; color: var(--green-dark); font-size: 20px; }
+
+.prof-table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.prof-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.prof-table th {
+  text-align: left;
+  padding: 14px 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+.prof-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.prof-table tr:last-child td { border-bottom: none; }
+.prof-table tr:hover td { background: var(--bg); }
+.prof-table .td-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background-size: cover; background-position: center;
+  display: inline-block; vertical-align: middle;
+  margin-right: 10px;
+}
+.prof-table .status-dot {
+  display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 6px;
+}
+.prof-table .status-dot.ativo { background: var(--green); }
+.prof-table .status-dot.concluinte { background: var(--ink-soft); }
+.prof-table .nota { font-family: var(--display); font-weight: 700; }
+.prof-table .nota.alta { color: var(--green); }
+.prof-table .nota.media { color: var(--coral-orange); }
+.prof-table .nota.baixa { color: var(--coral-deep-orange); }
+
+.prof-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.prof-actions .btn { font-size: 13.5px; padding: 12px 22px; }
+
+.prof-grid-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.prof-info-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform .3s ease;
+}
+.prof-info-card:hover { transform: translateY(-4px); }
+.prof-info-card h4 { font-size: 15px; color: var(--green-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.prof-info-card h4 .ic { width: 32px; height: 32px; border-radius: 8px; background: var(--bg-soft); display: flex; align-items: center; justify-content: center; color: var(--green); }
+.prof-info-card ul { display: flex; flex-direction: column; gap: 10px; }
+.prof-info-card li { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--ink-soft); padding: 6px 0; border-bottom: 1px solid var(--line); }
+.prof-info-card li:last-child { border-bottom: none; }
+.prof-info-card li b { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand"><span class="mark"></span> Conecta <small>Professor</small></a>
+    <ul class="nav-links">
+      <li><a href="#dash">Painel</a></li>
+      <li><a href="#alunos">Alunos</a></li>
+      <li><a href="#turmas">Turmas</a></li>
+      <li><a href="index.html" class="nav-cta">Voltar ao site</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="prof-dash wrap" id="dash">
+  <div class="prof-header">
+    <div>
+      <h1>Ola, Prof. Gallo <span class="prof-badge">Tecnologia da Informacao</span></h1>
+      <div class="aluno-meta" style="margin-top:6px;">
+        <span>3 turmas ativas</span>
+        <span>48 alunos sob sua responsabilidade</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="prof-stats">
+    <div class="prof-stat-card">
+      <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <b>3</b>
+      <span>Turmas ativas</span>
+    </div>
+    <div class="prof-stat-card">
+      <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <b>48</b>
+      <span>Alunos total</span>
+    </div>
+    <div class="prof-stat-card">
+      <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <b>92%</b>
+      <span>Frequencia media</span>
+    </div>
+    <div class="prof-stat-card">
+      <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+      <b>16</b>
+      <span>Aulas dadas</span>
+    </div>
+  </div>
+
+  <div class="prof-section" id="alunos">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+      <h3 style="margin-bottom:0;">Alunos — Turma 2026 A</h3>
+      <div class="prof-actions">
+        <a href="#" class="btn btn-dark" style="font-size:13px;padding:10px 18px;">Exportar notas</a>
+        <a href="#" class="btn btn-ghost" style="font-size:13px;padding:10px 18px;">Chamada</a>
+      </div>
+    </div>
+    <div class="prof-table-wrap">
+      <table class="prof-table">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Matricula</th>
+            <th>Frequencia</th>
+            <th>Nota</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Ana+Julia+Silva&background=3b6bc4&color=fff&size=64')"></span>Ana Julia Silva</td>
+            <td>CT-2026-001</td>
+            <td>95%</td>
+            <td class="nota alta">9.2</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Lucas+Oliveira+Santos&background=254287&color=fff&size=64')"></span>Lucas Oliveira Santos</td>
+            <td>CT-2026-002</td>
+            <td>88%</td>
+            <td class="nota alta">8.5</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Isabela+Costa+Lima&background=1f6e4a&color=fff&size=64')"></span>Isabela Costa Lima</td>
+            <td>CT-2026-003</td>
+            <td>97%</td>
+            <td class="nota alta">9.8</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Gabriel+Pereira+Martins&background=0f3d28&color=fff&size=64')"></span>Gabriel Pereira Martins</td>
+            <td>CT-2026-004</td>
+            <td>72%</td>
+            <td class="nota media">7.0</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Sophia+Almeida+Ribeiro&background=2a4b9e&color=fff&size=64')"></span>Sophia Almeida Ribeiro</td>
+            <td>CT-2026-005</td>
+            <td>91%</td>
+            <td class="nota alta">9.0</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Miguel+Souza+Rocha&background=1c2a5e&color=fff&size=64')"></span>Miguel Souza Rocha</td>
+            <td>CT-2026-006</td>
+            <td>65%</td>
+            <td class="nota baixa">5.5</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Helena+Dias+Carvalho&background=3b6bc4&color=fff&size=64')"></span>Helena Dias Carvalho</td>
+            <td>CT-2026-007</td>
+            <td>93%</td>
+            <td class="nota alta">8.8</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+          <tr>
+            <td><span class="td-avatar" style="background-image:url('https://ui-avatars.com/api/?name=Arthur+Gomes+Barros&background=254287&color=fff&size=64')"></span>Arthur Gomes Barros</td>
+            <td>CT-2026-008</td>
+            <td>78%</td>
+            <td class="nota media">6.8</td>
+            <td><span class="status-dot ativo"></span>Ativo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="prof-grid-cards">
+    <div class="prof-info-card">
+      <h4><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>Proximas aulas</h4>
+      <ul>
+        <li><span>Segunda 08h-11h</span><b>TI — Logica</b></li>
+        <li><span>Terca 08h-11h</span><b>TI — Banco de dados</b></li>
+        <li><span>Quarta 08h-11h</span><b>TI — Front-end</b></li>
+        <li><span>Quinta 08h-10h</span><b>Mentoria individual</b></li>
+      </ul>
+    </div>
+    <div class="prof-info-card">
+      <h4><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>Entregas pendentes</h4>
+      <ul>
+        <li><span>Projeto front-end</span><b>5 alunos</b></li>
+        <li><span>Exercicio SQL</span><b>2 alunos</b></li>
+        <li><span>Relatorio cooperativismo</span><b>8 alunos</b></li>
+        <li><span>Autoavaliacao</span><b>12 alunos</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom" style="border:none;padding:0;">
+      <span>&copy; 2026 Barracred Conecta — ambiente do professor</span>
+      <a href="index.html" style="font-size:12.5px;color:rgba(255,255,255,.45);">&larr; Voltar ao site</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
