@@ -1,1 +1,0 @@
-https://galloprojetospessoais.github.io/nova-conecta/

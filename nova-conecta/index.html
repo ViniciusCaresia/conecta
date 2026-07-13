@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Barracred Conecta</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="José Antonio Gallo Junior">
+  <meta name="description" content="Website do Projeto Social da Barracred">
+  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/tiny-slider/tiny-slider.css">
+  <link rel="stylesheet" type="text/css" href="assets/fonts/coolvetica.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/modern.css">
+</head>
+
+<body>
+  <div class="preloader">
+    <img src="assets/images/barracred.png" alt="Pre-loader Barracred Conecta">
+  </div>
+
+  <header class="site-header navbar-transparent navbar-dark">
+    <nav class="navbar navbar-expand-xl nav-dark glass-nav" aria-label="Navegação principal">
+      <div class="container-fluid px-lg-5">
+        <a class="navbar-brand" href="index.html" aria-label="Barracred Conecta">
+          <img class="navbar-brand-item" src="assets/images/logo.png" alt="Logo Barracred Conecta">
+        </a>
+
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav navbar-nav-scroll ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">Quem Somos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#content">Conteúdo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projetos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#who">Como participar</a></li>
+            <li class="nav-item nav-cta ms-lg-3">
+              <a href="#getin" class="btn btn-sm btn-grad text-white mb-0">Faça Parte!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero-section fade-bg" style="background-image: url(assets/images/banner/1.jpg);">
+      <div class="fade-overlay"></div>
+      <div class="hero-orb hero-orb-one"></div>
+      <div class="hero-orb hero-orb-two"></div>
+      <div class="container hero-container">
+        <div class="row align-items-center min-vh-100 py-7">
+          <div class="col-lg-8 col-xl-7">
+            <div class="glass-panel hero-card all-text-white">
+              <span class="eyebrow">Programa Social da Cooperativa Barracred</span>
+              <h1 class="display-1 logo-font mb-3">Barracred Conecta</h1>
+              <h2 class="display-6 fw-bold text-white mb-4">Criando Oportunidades e Cooperando para o Futuro</h2>
+              <p class="hero-lead mb-4">Educação, tecnologia, desenvolvimento humano e cooperativismo reunidos para preparar jovens para os desafios de hoje e as oportunidades de amanhã.</p>
+              <div class="hero-actions d-flex flex-wrap gap-3">
+                <a href="#getin" class="btn btn-grad text-white">Quero participar</a>
+                <a href="#about" class="btn btn-glass text-white">Conhecer o programa</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="glass-panel hero-mini-card">
+              <div class="mini-kicker">Formação gratuita</div>
+              <strong>10 meses</strong>
+              <span>com apoio, acompanhamento e oportunidades reais.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas class="position-absolute top-100 start-50 translate-middle mb-6 z-index-9" id="waveCanvas"></canvas>
+    </section>
+
+    <section class="section-modern pt-md-8" id="about">
+      <div class="container z-in">
+        <div class="section-heading text-center mx-auto">
+          <span class="eyebrow text-grad">Quem Somos</span>
+          <h2>Seja bem-vindo ao Barracred Conecta</h2>
+        </div>
+
+        <div class="row align-items-stretch g-4">
+          <div class="col-lg-7">
+            <div class="glass-card content-card h-100 reveal-card">
+              <p>Aqui, acreditamos que cada jovem carrega um mundo de possibilidades. Foi por isso que criamos este espaço: para inspirar, capacitar e criar conexões com o futuro por meio da educação, do conhecimento e do desenvolvimento humano.</p>
+              <p>Somos um Programa Social da Cooperativa Barracred, desenvolvido com carinho para abrir caminhos e oferecer oportunidades reais à jovens que desejam crescer como pessoas, desenvolver suas habilidades profissionais e assumir, com consciência, seu papel na sociedade.</p>
+              <p>Nosso compromisso vai muito além da capacitação técnica! Queremos estar presentes na jornada de autoconhecimento, fortalecimento emocional, preparação e inserção no mundo do trabalho de cada jovem, sempre fundamentados e guiados pelos valores cooperativistas.</p>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="mission-card bg-grad h-100 all-text-white reveal-card">
+              <span>Porque quando a gente coopera, a transformação acontece! E é com esse espírito que seguimos firmes na missão da Barracred:</span>
+              <h3>Cooperar para transformar vidas</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-strip mt-4">
+          <div class="photo-tile large"><img src="assets/images/home/1.jpg" alt="Foto palestra"></div>
+          <div class="photo-tile"><img src="assets/images/home/2.jpeg" alt="Foto palestra"></div>
+          <div class="photo-tile"><img src="assets/images/home/3.jpeg" alt="Foto Palestra"></div>
+        </div>
+
+        <div class="classes-showcase mt-5">
+          <div class="section-heading text-center mx-auto classes-heading">
+            <span class="eyebrow text-grad">Memórias do programa</span>
+            <h3>Nossas turmas</h3>
+            <p>Turmas que já fizeram e fazem parte dessa trajetória de aprendizado, cooperação e transformação.</p>
+          </div>
+          <div class="tiny-slider arrow-hover classes-carousel-wrap">
+            <div class="tiny-slider-inner classes-slider" data-arrow="true" data-dots="true" data-autoplay="true" data-autoplaytime="4500" data-gutter="24" data-items-xl="2" data-items-lg="2" data-items-md="1" data-items-sm="1" data-items-xs="1">
+              <div class="item">
+                <article class="class-card">
+                  <img src="assets/images/classes/1.jpg" alt="Turma Barracred Conecta 1">
+                  <div class="class-card-badge">Turma 1</div>
+                </article>
+              </div>
+              <div class="item">
+                <article class="class-card">
+                  <img src="assets/images/classes/2.jpg" alt="Turma Barracred Conecta 2">
+                  <div class="class-card-badge">Turma 2</div>
+                </article>
+              </div>
+              <div class="item">
+                <article class="class-card">
+                  <img src="assets/images/classes/3.jpg" alt="Turma Barracred Conecta 3">
+                  <div class="class-card-badge">Turma 3</div>
+                </article>
+              </div>
+              <div class="item">
+                <article class="class-card">
+                  <img src="assets/images/classes/4.jpeg" alt="Turma Barracred Conecta 4">
+                  <div class="class-card-badge">Turma 4</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern">
+      <div class="container">
+        <div class="row align-items-stretch g-4 glass-split program-split">
+          <div class="col-lg-5 d-flex">
+            <div class="image-frame program-image-frame w-100 h-100">
+              <img class="img-cover" src="assets/images/home/4.jpeg" alt="Foto Palestra">
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="content-card ps-lg-3">
+              <span class="eyebrow text-grad">Sobre o programa</span>
+              <h2>O que é o Barracred Conecta?</h2>
+              <p>O Barracred Conecta é muito mais do que uma capacitação. É uma porta de entrada para um novo mundo. Um programa pensado para preparar jovens para os desafios de hoje e as oportunidades de amanhã, com uma formação que une técnica, propósito e valores.</p>
+              <p>Com aulas de Tecnologia da Informação, Inglês Técnico, Educação Financeira e Desenvolvimento de Habilidades Pessoais e Profissionais, buscamos formar jovens confiantes, preparados e conscientes, capazes de atuar com protagonismo na vida e no trabalho.</p>
+              <p>Além da formação, oferecemos acompanhamento psicológico e apoio integral, cuidando também da saúde emocional dos alunos ao longo da jornada.</p>
+              <p>E tudo isso é oferecido de forma totalmente gratuita, graças ao investimento da Cooperativa Barracred, que ainda garante aos participantes:</p>
+              <ul class="modern-check-list">
+                <li>Material didático</li>
+                <li>Uniforme</li>
+                <li>Vale-transporte</li>
+                <li>Alimentação</li>
+                <li>Equipamentos individuais</li>
+                <li>Laboratório técnico equipado</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern team-section pt-md-8" id="team">
+      <div class="container">
+        <div class="row align-items-center g-4 mb-5">
+          <div class="col-lg-6">
+            <span class="eyebrow text-grad">Equipe</span>
+            <h2>Quem está com você nessa?</h2>
+            <p>Construímos uma equipe sólida, capaz de oferecer aos jovens alunos do Programa, oportunidades para desenvolver suas habilidades e adquirir as competências necessárias ao mundo atual.</p>
+            <p>Nosso time é composto de profissionais especializados, capazes e dedicados a formação de jovens, desde o básico comportamental até conceitos avançados de programação e tecnologia para desenvolver habilidades baseadas em conceitos atuais do mercado de trabalho.</p>
+            <p>Estamos aqui para apoiar, ensinar, escutar e caminhar junto com você — com respeito, acolhimento e entusiasmo.</p>
+          </div>
+          <div class="col-lg-6">
+            <div class="image-frame team-cover">
+              <img class="img-cover" src="assets/images/team/equipe.jpg" alt="Foto Equipe Geral">
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slider arrow-hover team-carousel-wrap">
+          <div class="tiny-slider-inner team social-hover team-overlay" data-arrow="true" data-dots="false" data-autoplay="5000" data-items-xl="4" data-items-lg="3" data-items-md="2" data-items-xs="1">
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/andresa.jpg" alt="Foto Andresa"></div>
+                <div class="team-desc"><h5>Andresa</h5><span>Coordenadora</span><ul class="social-icons"><li><a href="https://www.linkedin.com/in/andresa-baratela-2b5544240/" target="_blank" rel="noopener">in</a></li><li><a href="https://www.instagram.com/andresabaratela/" target="_blank" rel="noopener">ig</a></li></ul></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/adilson.jpg" alt="Foto Adilson"></div>
+                <div class="team-desc"><h5>Adilson</h5><span>Assistente de Coordenação</span><ul class="social-icons"><li><a href="https://www.linkedin.com/in/adilson-nascimento-7b5a69b6" target="_blank" rel="noopener">in</a></li><li><a href="https://www.instagram.com/adilsonnascy/" target="_blank" rel="noopener">ig</a></li></ul></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/aline.jpg" alt="Foto Aline"></div>
+                <div class="team-desc"><h5>Profª Aline</h5><span>Inglês Técnico</span><ul class="social-icons"><li><a href="https://www.linkedin.com/in/aline-pedra-07380381" target="_blank" rel="noopener">in</a></li><li><a href="https://www.instagram.com/alineropedra/" target="_blank" rel="noopener">ig</a></li></ul></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/cris.jpg" alt="Foto Cristiane"></div>
+                <div class="team-desc"><h5>Profª Cristiane</h5><span>Hab. Pessoais e Profissionais</span><ul class="social-icons"><li><a href="https://www.instagram.com/_chris_alvess_/" target="_blank" rel="noopener">ig</a></li></ul></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/gallo2.jpg" alt="Foto Gallo"></div>
+                <div class="team-desc"><h5>Prof. Gallo</h5><span>Tecnologia da Informação</span><ul class="social-icons"><li><a href="https://www.linkedin.com/in/gallo-junior/" target="_blank" rel="noopener">in</a></li><li><a href="https://www.github.com/gallojunior" target="_blank" rel="noopener">gh</a></li></ul></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="team-item modern-team-card mb-0 text-center">
+                <div class="team-avatar"><img src="assets/images/team/vera.jpg" alt="Foto Vera"></div>
+                <div class="team-desc"><h5>Profª Vera</h5><span>Hab. Pessoais e Profissionais</span><ul class="social-icons"><li><a href="https://www.linkedin.com/in/vera-prado-scudeleti-b54912177/" target="_blank" rel="noopener">in</a></li><li><a href="https://www.instagram.com/veramaraprado/" target="_blank" rel="noopener">ig</a></li></ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-modern why-section">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="dark-glass-card all-text-white h-100">
+              <span class="eyebrow">Propósito</span>
+              <h2>Por que fazemos o que fazemos?</h2>
+              <p>Porque acreditamos que transformar o futuro começa por acreditar nas pessoas. Cada jovem carrega um potencial único que merece ser desenvolvido com cuidado, respeito e oportunidade.</p>
+              <p>Quando um jovem é fortalecido, ele transforma não só a própria vida, mas também o mundo ao seu redor e é essa mudança que nos move todos os dias.</p>
+              <p>Nosso programa nasceu para:</p>
+              <ul class="modern-check-list light-list">
+                <li>Criar oportunidades para que os jovens se conheçam melhor e ampliem sua visão de futuro.</li>
+                <li>Oferecer ferramentas para que construam seus próprios caminhos com confiança.</li>
+                <li>Formar talentos engajados com a comunidade e comprometidos com o bem coletivo.</li>
+                <li>Fortalecer o cooperativismo como modelo de transformação social e inclusão.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="image-frame floating-image h-100">
+              <img class="img-cover" src="assets/images/home/5.jpeg" alt="Foto Palestra">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern pt-md-8" id="content">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="eyebrow text-grad">Conteúdo</span>
+          <h2>O que você vai aprender?</h2>
+        </div>
+        <div class="row g-4 mt-2">
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">👤</div>
+              <h3 class="feature-box-title">Habilidades Pessoais e Profissionais</h3>
+              <p class="feature-box-desc">Trabalhamos autoconhecimento, empatia, habilidades socioemocionais e competências profissionais para formar jovens autônomos e preparados para o mercado de trabalho.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">💻</div>
+              <h3 class="feature-box-title">Tecnologia da Informação</h3>
+              <p class="feature-box-desc">Os alunos aprendem desde sistemas operacionais e hardware até programação, banco de dados e desenvolvimento (front-end, back-end e mobile), preparando-se para o mercado de TI conforme seu perfil e interesse.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">🌎</div>
+              <h3 class="feature-box-title">Inglês Técnico</h3>
+              <p class="feature-box-desc">O inglês é uma ferramenta essencial para o mercado de trabalho, nesse ponto focamos no vocabulário e expressões do mundo corporativo para uma comunicação clara e eficiente.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">📈</div>
+              <h3 class="feature-box-title">Educação Financeira</h3>
+              <p class="feature-box-desc">Os jovens aprendem a planejar e controlar suas finanças, definindo metas realistas. Incentivamos a gestão consciente de recursos para criar hábitos saudáveis e um futuro financeiro mais seguro.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">🎯</div>
+              <h3 class="feature-box-title">Oficinas para o Mercado</h3>
+              <p class="feature-box-desc">Nossas oficinas ensinam desde elaboração de currículos até simulações de entrevistas, com dicas práticas de especialistas para ingressar no mundo profissional com segurança.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">🤝</div>
+              <h3 class="feature-box-title">Cooperativismo na Prática</h3>
+              <p class="feature-box-desc">Os jovens aprendem os princípios do cooperativismo, o papel das cooperativas e vivenciam na prática o trabalho em modelo colaborativo.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">💬</div>
+              <h3 class="feature-box-title">Palestras Imersivas</h3>
+              <p class="feature-box-desc">Profissionais de diversas áreas compartilham experiências e desafios do mercado, estimulando reflexão e inspirando os jovens a serem protagonistas de suas carreiras.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">💡</div>
+              <h3 class="feature-box-title">Feiras e Eventos</h3>
+              <p class="feature-box-desc">Visitas técnicas, hackathons e eventos culturais proporcionam experiências práticas, networking e ampliação de perspectivas para o futuro profissional.</p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-box h-100 icon-grad modern-feature-card">
+              <div class="feature-box-icon">💼</div>
+              <h3 class="feature-box-title">Estágios e Oportunidades</h3>
+              <p class="feature-box-desc">Facilitamos oportunidades reais de trabalho e estágios através de parcerias com empresas, ajudando os jovens a aplicar suas habilidades e dar o primeiro passo na carreira.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern projects-section pt-md-8" id="projects">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <span class="eyebrow text-grad">Projetos</span>
+          <h2>Projetos que conectam aprendizado, comunidade e transformação</h2>
+          <p>Além das aulas, os alunos vivenciam experiências práticas que ampliam a formação humana, fortalecem vínculos com a comunidade e transformam conhecimento em impacto social.</p>
+        </div>
+
+        <div class="row g-4 project-grid">
+          <div class="col-lg-6">
+            <article class="project-card h-100">
+              <div class="project-media project-carousel-media">
+                <div class="tiny-slider arrow-hover project-carousel-wrap">
+                  <div class="tiny-slider-inner project-image-slider" data-arrow="true" data-dots="true" data-autoplay="true" data-autoplaytime="4800" data-hoverpause="true" data-gutter="0" data-items-xl="1" data-items-lg="1" data-items-md="1" data-items-sm="1" data-items-xs="1">
+                    <div class="item project-slide"><img src="assets/images/projects/conectando-geracoes/1.jpeg" alt="Projeto Conectando Gerações - foto 1"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conectando-geracoes/2.jpeg" alt="Projeto Conectando Gerações - foto 2"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conectando-geracoes/3.jpeg" alt="Projeto Conectando Gerações - foto 3"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conectando-geracoes/4.jpeg" alt="Projeto Conectando Gerações - foto 4"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conectando-geracoes/5.jpeg" alt="Projeto Conectando Gerações - foto 5"></div>
+                  </div>
+                </div>
+                <span class="project-badge">Intergeracional</span>
+              </div>
+              <div class="project-content">
+                <h3>Conectando Gerações</h3>
+                <p>Uma proposta socioeducativa que aproxima os alunos do Barracred Conecta dos idosos residentes em lares de amparo à velhice de Barra Bonita, promovendo convivência, acolhimento, troca de experiências e respeito entre diferentes gerações.</p>
+                <p>Os encontros frequentes são planejados para gerar conexão, bem-estar, escuta ativa e aprendizado mútuo, fortalecendo nos jovens valores como empatia, solidariedade, responsabilidade social e protagonismo.</p>
+                <ul class="project-list">
+                  <li>Inclusão social e troca de experiências.</li>
+                  <li>Fortalecimento de vínculos, valores e cidadania.</li>
+                  <li>Respeito intergeracional, diálogo e escuta ativa.</li>
+                  <li>Valorização das histórias, culturas e vivências dos idosos.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="project-card h-100 featured-project">
+              <div class="project-media project-carousel-media">
+                <div class="tiny-slider arrow-hover project-carousel-wrap">
+                  <div class="tiny-slider-inner project-image-slider" data-arrow="true" data-dots="true" data-autoplay="true" data-autoplaytime="5200" data-hoverpause="true" data-gutter="0" data-items-xl="1" data-items-lg="1" data-items-md="1" data-items-sm="1" data-items-xs="1">
+                    <div class="item project-slide"><img src="assets/images/projects/conecta-em-acao/1.jpeg" alt="Projeto Conecta em Ação - foto 1"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conecta-em-acao/2.jpeg" alt="Projeto Conecta em Ação - foto 2"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conecta-em-acao/3.jpg" alt="Projeto Conecta em Ação - foto 3"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conecta-em-acao/4.jpeg" alt="Projeto Conecta em Ação - foto 4"></div>
+                    <div class="item project-slide"><img src="assets/images/projects/conecta-em-acao/5.jpeg" alt="Projeto Conecta em Ação - foto 5"></div>
+                  </div>
+                </div>
+                <span class="project-badge">Arte e educação</span>
+              </div>
+              <div class="project-content">
+                <h3>Conecta em Ação</h3>
+                <p>O projeto transforma o teatro em uma poderosa ferramenta de aprendizado, expressão, engajamento e impacto social. As peças são criadas e encenadas pelos próprios alunos, abordando temas relevantes de forma sensível, educativa e provocadora de reflexões.</p>
+                <p>Há dois anos consecutivos, a Educação Financeira tem sido o foco das apresentações, levando conceitos importantes de forma lúdica e acessível para crianças e adolescentes.</p>
+                <div class="project-metrics">
+                  <span><strong>300+</strong> crianças impactadas no primeiro ano</span>
+                  <span><strong>750+</strong> crianças alcançadas no segundo ano</span>
+                </div>
+                <ul class="project-list">
+                  <li>Comunicação, expressão e criatividade.</li>
+                  <li>Trabalho em equipe, cooperação e comprometimento.</li>
+                  <li>Protagonismo juvenil e formação cidadã.</li>
+                  <li>Educação Financeira de forma criativa e transformadora.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern pt-md-8 pb-0" id="who">
+      <div class="container">
+        <div class="row g-4 align-items-stretch glass-split participation-box">
+          <div class="col-lg-6">
+            <div class="image-frame h-100">
+              <img class="img-cover" src="assets/images/home/6.jpg" alt="Jovens em atividade">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="dark-glass-card all-text-white h-100">
+              <span class="eyebrow">Como participar</span>
+              <h2 class="mb-4">Quem pode participar?</h2>
+              <p>O programa é destinado à <b>jovens entre 16 e 20 anos</b> que buscam mais do que conhecimento técnico: buscam uma experiência de transformação pessoal e profissional.</p>
+              <div class="info-pills">
+                <span><b>Duração:</b> 10 meses.</span>
+                <span><b>Vagas atuais:</b> 20.</span>
+              </div>
+              <ul class="modern-check-list light-list mt-3">
+                <li>70% para filhos ou dependentes de cooperados da Barracred.</li>
+                <li>30% para jovens da comunidade em geral.</li>
+              </ul>
+              <p class="fw-bold mt-4 mb-2">Requisitos:</p>
+              <ul class="modern-check-list light-list">
+                <li>Ter entre 16 e 20 anos.</li>
+                <li>Estar cursando ou ter concluído a educação básica na <b>rede pública</b>.</li>
+                <li>Residir em <b>Barra Bonita</b> ou <b>Igaraçu do Tietê - SP</b>.</li>
+                <li>Ter <b>comprometimento e disponibilidade</b> para participar integralmente da formação.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-modern pt-md-8" id="getin">
+      <div class="container">
+        <div class="cta-shell glass-card shadow-lg overflow-hidden">
+          <div class="row g-0 align-items-stretch">
+            <div class="col-lg-6 bg-white-soft">
+              <div class="cta-panel h-100 p-4 p-md-5">
+                <div class="cta-icon">✍️</div>
+                <h3 class="mb-3">Ficou interessado?</h3>
+                <p>O processo de inscrição é simples! Basta clicar no botão abaixo e preencher o formulário rápido. As inscrições estarão abertas <strong>até 10 de agosto de 2026</strong>.</p>
+                <p>Após essa fase, nossa equipe entrará em contato com todos os inscritos para dar continuidade ao processo de seleção.</p>
+                <div class="d-flex flex-wrap gap-3">
+                  <a href="https://beforms.becompliance.com/680a40523c67010009167a96" class="btn btn-grad text-white mb-0" target="_blank" rel="noopener">Quero me inscrever</a>
+                  <button type="button" class="btn btn-outline-modern mb-0" data-bs-toggle="modal" data-bs-target="#myModal">Candidatos classificados</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex">
+              <div class="cta-panel bg-grad pattern-overlay-2 h-100 all-text-white p-4 p-md-5">
+                <div class="cta-icon light-icon">🤝</div>
+                <h3>Seja um parceiro dessa transformação</h3>
+                <p>Você é empresário, profissional ou representa uma empresa e quer investir em jovens talentos? O Barracred Conecta está sempre aberto a parcerias que acreditam na educação e no desenvolvimento social como motor de mudança.</p>
+                <p>Como você pode contribuir: Oferecendo oportunidades de estágio, compartilhando conhecimento através de palestras e mentorias, ou facilitando conexões com o mercado.</p>
+                <a href="https://wa.me/5514996680366?text=Olá,%20quero%20ser%20um%20parceiro%20Barracred%20Conecta!!!" class="btn btn-dark mb-0" target="_blank" rel="noopener">Fale conosco no WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer footer-dark section-pt modern-footer">
+    <div class="footer-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mx-auto">
+            <div class="widget text-center mt-5 glass-footer-card">
+              <a href="index.html" class="footer-logo mb-3 d-block">
+                <img src="assets/images/logo.png" alt="Logo Barracred Conecta">
+              </a>
+              <p class="mt-3">Nosso foco é transformar vidas por meio da educação e da tecnologia. Criamos experiências e soluções que fazem sentido para os jovens e para a realidade em que vivem. Tudo o que oferecemos nasce do nosso compromisso com o futuro deles.</p>
+              <ul class="footer-contact p-0 list-inline">
+                <li class="list-inline-item me-4"><span class="footer-icon">📍</span> Rua Ferrucio Bolla, 613. Barra Bonita - SP</li>
+                <li class="list-inline-item me-4"><span class="footer-icon">☎️</span> <a href="tel:14996680366">(14) 99668-0366</a></li>
+                <li class="list-inline-item me-4"><span class="footer-icon">✉️</span> <a href="mailto:social@barracred.com.br">social@barracred.com.br</a></li>
+              </ul>
+              <div class="divider my-3"></div>
+              <div class="copyright-links my-2">
+                <ul class="list-inline">
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action" href="#home">Home</a></li>
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action" href="#about">Quem Somos</a></li>
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action" href="#content">Conteúdo</a></li>
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action" href="#projects">Projetos</a></li>
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action" href="#who">Como Participar</a></li>
+                  <li class="list-inline-item ps-2"><a class="list-group-item-action pe-0" href="#getin">Faça Parte</a></li>
+                </ul>
+              </div>
+              <div class="copyright-text">©2025 Todos os Direitos Reservados <a href="https://www.barracredconecta.com.br/"> Barracred Conecta</a>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade modern-modal" id="myModal" tabindex="-1" aria-labelledby="modalGabaritoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalGabaritoLabel">Candidatos Classificados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Nos próximos dias, entraremos em contato com os candidatos classificados para agendamento da entrevista social, que acontecerá com um responsável legal ou familiar.</h5>
+          <iframe src="assets/data/Classificados.pdf" width="100%" height="500" style="border:none;" title="Candidatos Classificados"></iframe>
+          <a href="assets/data/Classificados.pdf" class="btn btn-success mt-3" target="_blank" download>Baixar Lista (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div><a href="#" class="back-top btn btn-grad" aria-label="Voltar ao topo">↑</a></div>
+
+  <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/tiny-slider/tiny-slider.js"></script>
+  <script src="assets/js/helpers.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+
+</html>
