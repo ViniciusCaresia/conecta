@@ -1,9 +1,9 @@
 /* =========================================================
    BARRACRED CONECTA v2 — JavaScript Mesclado
-   Fusao do nova-conecta + conecta-app
+   Fusão do nova-conecta + conecta-app
    ========================================================= */
 
-// ============ UTILITARIOS ============
+// ============ UTILITÁRIOS ============
 function select(el) {
   return typeof el === 'string' ? document.querySelector(el) : el;
 }

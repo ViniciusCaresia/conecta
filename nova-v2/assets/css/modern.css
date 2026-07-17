@@ -177,6 +177,12 @@ a:focus-visible, button:focus-visible {
   box-shadow: 0 18px 34px rgba(15, 122, 86, .42);
 }
 
+.nav-cta .btn-grad,
+.nav-cta .btn-grad:hover,
+.nav-cta .btn-grad:focus {
+  box-shadow: none;
+}
+
 .btn-glass {
   border: 1px solid rgba(255,255,255,.34);
   background: rgba(255,255,255,.14);
@@ -670,7 +676,11 @@ a:focus-visible, button:focus-visible {
 /* ============ FEATURE CARDS ============ */
 .modern-feature-card {
   position: relative;
-  min-height: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   padding: 2rem;
   border-radius: var(--bc-radius-lg);
   background: rgba(255,255,255,.72);
@@ -1275,7 +1285,23 @@ a:focus-visible, button:focus-visible {
 
 .footer-logo img {
   max-width: min(330px, 78vw);
-  filter: brightness(0) invert(48%) sepia(54%) saturate(542%) hue-rotate(116deg) brightness(102%) contrast(89%);
+}
+
+.footer-logo-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-logo-full {
+  filter: brightness(0) invert(1);
+}
+
+.footer-logo-symbol {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  max-height: 100%;
 }
 
 .footer-contact {
@@ -2032,7 +2058,6 @@ body::before { opacity: .5; }
 /* ============ NAVBAR BRAND ============ */
 .glass-nav.scrolled .navbar-brand {
   background: rgba(59,189,128,.12);
-  box-shadow: inset 0 0 0 1px rgba(59,189,128,.18);
 }
 .glass-nav.scrolled .navbar-brand-item { filter: invert(1) hue-rotate(180deg); }
 

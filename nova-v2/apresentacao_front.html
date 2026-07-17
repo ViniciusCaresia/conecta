@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barracred Conecta — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #063024;
+  --bg-soft: #0a5e43;
+  --surface: rgba(255,255,255,0.06);
+  --ink: #f1f5f9;
+  --ink-soft: #94a3b8;
+  --primary: #3bbd80;
+  --primary-dark: #0f7a56;
+  --primary-deep: #07503c;
+  --primary-bright: #6fe0a8;
+  --primary-soft: rgba(59,189,128,.16);
+  --primary-tint: #eafaf2;
+  --dark: #063024;
+  --deep: #03110e;
+  --text: #163029;
+  --muted: #5d716a;
+  --white: #ffffff;
+  --offwhite: #f4fbf7;
+  --lime: #c3e34e;
+  --coral: #3b6bc4;
+  --indigo: #1c2a5e;
+  --accent: #3bbd80;
+  --line: rgba(255,255,255,0.10);
+  --display: "Space Grotesk", sans-serif;
+  --body: "Poppins", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+}
+
+html, body {
+  height: 100%; overflow: hidden;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* DECK */
+.deck {
+  display: flex; height: 100vh;
+  transition: transform .7s cubic-bezier(.65,0,.35,1);
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 48px 64px; overflow: hidden;
+}
+
+.slide-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-bright) 100%);
+  opacity: .08; z-index: 0;
+}
+
+.slide-content {
+  max-width: 960px; width: 100%;
+  position: relative; z-index: 1;
+}
+
+.slide-content.centered {
+  text-align: center; display: flex;
+  flex-direction: column; align-items: center;
+}
+
+.slide-content.two-col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+}
+
+/* ANIMACOES */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.slide { animation: fadeIn .5s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.slide-content > * { animation: fadeUp .5s ease both; }
+.slide-content > *:nth-child(1) { animation-delay: .05s; }
+.slide-content > *:nth-child(2) { animation-delay: .12s; }
+.slide-content > *:nth-child(3) { animation-delay: .2s; }
+.slide-content > *:nth-child(4) { animation-delay: .28s; }
+
+/* CAPA */
+.badge-v {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; background: rgba(59,189,128,.2); color: var(--accent);
+  padding: 5px 16px; border-radius: 100px; margin-bottom: 20px; display: inline-block;
+}
+
+.slide h1 {
+  font-family: var(--display); font-size: clamp(40px, 5vw, 68px);
+  font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
+  color: var(--ink); margin-bottom: 10px;
+}
+
+.centered h1::after {
+  content: ""; display: block; width: 48px; height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-bright)); border-radius: 4px; margin: 18px auto 0;
+}
+
+.subtitle {
+  font-family: var(--display); font-size: 17px;
+  color: var(--ink-soft); font-weight: 500; margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 15px; color: var(--ink-soft); max-width: 420px;
+}
+
+/* META */
+.slide-meta {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+}
+
+.slide-num {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  color: var(--accent); letter-spacing: .1em;
+  background: rgba(59,189,128,.15); padding: 3px 12px; border-radius: 100px;
+}
+
+.slide-tag {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--ink-soft);
+}
+
+.slide h2 {
+  font-family: var(--display); font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 700; letter-spacing: -.02em; line-height: 1.12;
+  color: var(--ink); margin-bottom: 14px;
+}
+
+.col-text h2::before {
+  content: ""; display: block; width: 36px; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-bright)); border-radius: 4px; margin-bottom: 14px;
+}
+
+.reason {
+  font-size: 15px; color: var(--ink-soft); line-height: 1.7;
+}
+
+.reason strong { color: var(--ink); font-weight: 600; }
+
+code {
+  background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;
+  font-family: var(--mono); font-size: .85em; color: var(--accent);
+}
+
+/* SWATCHES */
+.palette-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+  animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.swatch {
+  background: var(--c); border-radius: 12px; padding: 14px;
+  display: flex; flex-direction: column; gap: 3px;
+  aspect-ratio: 1; justify-content: flex-end;
+  transition: transform .2s; border: 1px solid var(--line);
+}
+
+.swatch:hover { transform: scale(1.06); }
+
+.swatch-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--ink);
+}
+
+.swatch-label.light { color: rgba(255,255,255,.9); }
+
+.swatch-code {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+}
+
+.swatch-code.light { color: rgba(255,255,255,.6); }
+
+/* TYPE SPECIMEN */
+.type-showcase {
+  display: flex; flex-direction: column; gap: 16px;
+  animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.type-block {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; padding: 20px 24px;
+}
+
+.type-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--accent); display: block; margin-bottom: 6px;
+}
+
+.type-sample {
+  font-size: 22px; font-weight: 700; color: var(--ink);
+  display: block; letter-spacing: -.01em;
+}
+
+.type-sample.display { font-family: var(--display); }
+.type-sample.body { font-family: var(--body); }
+.type-sample.mono { font-family: var(--mono); color: var(--accent); }
+
+.type-weights {
+  font-family: var(--body); font-size: 11px; color: var(--ink-soft);
+  margin-top: 6px; display: block;
+}
+
+.weight-tag {
+  font-size: .7rem; padding: .3rem .7rem; border-radius: 999px;
+  background: rgba(59,189,128,.15); color: var(--accent); font-weight: 600;
+  display: inline-block; margin: 2px;
+}
+
+/* TOKEN CARDS */
+.token-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin-top: 12px; animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.token-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; padding: 20px;
+  transition: transform .2s;
+}
+
+.token-card:hover { transform: translateY(-3px); }
+
+.token-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--ink-soft); margin-bottom: 6px;
+}
+
+.token-value {
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+  color: var(--accent);
+}
+
+.token-visual { margin-top: 12px; }
+
+.radius-demo {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+}
+
+.shadow-demo {
+  height: 60px; border-radius: 12px; background: var(--surface);
+}
+
+/* GLASS */
+.glass-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 16px; animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.glass-demo {
+  background: rgba(255,255,255,.55); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.3); border-radius: 20px;
+  padding: 24px;
+}
+
+.glass-demo-bright {
+  background: linear-gradient(135deg, rgba(59,189,128,0.15), rgba(111,224,168,0.10));
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(59,189,128,0.2); border-radius: 20px;
+  padding: 24px;
+}
+
+.glass-demo h3, .glass-demo-bright h3 {
+  font-family: var(--display); font-size: 16px; font-weight: 700;
+  margin-bottom: 8px; color: var(--dark);
+}
+
+.glass-demo-bright h3 { color: var(--accent); }
+
+.glass-demo p, .glass-demo-bright p {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+}
+
+.glass-inner {
+  margin-top: 12px; padding: 12px; border-radius: 12px; font-size: 13px;
+}
+
+/* BUTTONS */
+.btn-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  margin-top: 16px; animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.btn-demo {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 24px; border-radius: 14px; font-family: var(--display);
+  font-weight: 600; font-size: 14px; border: none; cursor: pointer;
+  transition: transform .2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; }
+.btn-dark { background: var(--bg-soft); color: #fff; border: 1px solid var(--line); }
+.btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.btn-ghost { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--line); }
+
+.btn-label {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+}
+
+/* FEATURE CARDS */
+.feature-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  margin-top: 16px; animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.feature-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px 20px; text-align: left;
+  transition: transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+
+.feature-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;   background: linear-gradient(90deg, var(--primary), var(--primary-bright));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s; border-radius: 16px 16px 0 0;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(10,94,67,.18);
+  background: linear-gradient(160deg, #0f7a56 0%, #0a5e43 55%, #063024 100%);
+  border-color: rgba(255,255,255,.2);
+}
+
+.feature-card:hover::before { transform: scaleX(1); }
+
+.feature-icon {
+  font-size: 28px; margin-bottom: 12px; display: block;
+}
+
+.feature-title {
+  font-family: var(--display); font-size: 14px; font-weight: 700;
+  color: var(--ink); margin-bottom: 4px;
+  transition: color .3s ease;
+}
+
+.feature-desc {
+  font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  transition: color .3s ease;
+}
+
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-desc { color: #fff; }
+
+/* RESPONSIVE MOCK */
+.responsive-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 16px; align-items: end;
+  animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.device-mock {
+  background: var(--bg-soft); border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.device-bar {
+  height: 28px; background: rgba(255,255,255,0.04);
+  display: flex; align-items: center; padding: 0 10px; gap: 5px;
+}
+
+.device-bar span { width: 8px; height: 8px; border-radius: 50%; }
+.device-bar span:nth-child(1) { background: #ff5f57; }
+.device-bar span:nth-child(2) { background: #ffbd2e; }
+.device-bar span:nth-child(3) { background: #28c840; }
+
+.device-screen {
+  padding: 14px; min-height: 120px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.device-line {
+  height: 10px; border-radius: 6px;
+  background: rgba(59,189,128,.15);
+}
+
+.device-block {
+  height: 50px; border-radius: 10px;
+  background: linear-gradient(135deg, rgba(59,189,128,.12), rgba(111,224,168,.06));
+}
+
+.device-label {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+  text-align: center; margin-top: 8px;
+}
+
+.device-sublabel {
+  font-family: var(--mono); font-size: 9px; color: var(--ink-soft);
+  text-align: center; opacity: .5;
+}
+
+/* NAV */
+.deck-nav {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 20px;
+  background: rgba(17,20,39,0.9); border: 1px solid var(--line);
+  border-radius: 100px; padding: 7px 14px;
+  backdrop-filter: blur(16px); z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+.deck-prev, .deck-next {
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-soft); width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: background .2s, color .2s;
+}
+
+.deck-prev:hover, .deck-next:hover { background: rgba(255,255,255,0.08); color: var(--ink); }
+.deck-dots { display: flex; gap: 6px; }
+
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+  transition: background .3s, transform .2s; padding: 0;
+}
+
+.dot.active { background: var(--accent); transform: scale(1.4); }
+
+/* RESPONSIVO */
+@media (max-width: 800px) {
+  .slide { padding: 32px 24px; }
+  .slide-content.two-col { grid-template-columns: 1fr; gap: 24px; }
+  .palette-grid { grid-template-columns: repeat(3, 1fr); }
+  .token-grid, .glass-grid, .btn-grid, .feature-grid { grid-template-columns: 1fr; }
+  .responsive-grid { grid-template-columns: 1fr; }
+  .deck-nav { bottom: 14px; padding: 5px 10px; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- 01 — CAPA -->
+  <div class="slide" id="s1">
+    <div class="slide-bg"></div>
+    <div class="slide-content centered">
+      <span class="badge-v">v2.0 · 2025</span>
+      <h1>Barracred Conecta</h1>
+      <p class="subtitle">Design System — Programa Social</p>
+      <p class="desc">As escolhas visuais do programa, os porques de cada decisao e o que vem pela frente.</p>
+    </div>
+  </div>
+
+  <!-- 02 — CORES -->
+  <div class="slide" id="s2">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">01</span><span class="slide-tag">Identidade Visual</span></div>
+        <h2>Paleta de Cores</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Verde como identidade visual principal da marca Barracred. Fundo escuro verde para elegancia e contraste. Acentos em lime, coral e indigo para variações de status e acoes.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="palette-grid">
+          <div class="swatch" style="--c: #3bbd80"><span class="swatch-label light">primary</span><span class="swatch-code light">#3bbd80</span></div>
+          <div class="swatch" style="--c: #0f7a56"><span class="swatch-label light">primary-dark</span><span class="swatch-code light">#0f7a56</span></div>
+          <div class="swatch" style="--c: #07503c"><span class="swatch-label light">primary-deep</span><span class="swatch-code light">#07503c</span></div>
+          <div class="swatch" style="--c: #6fe0a8"><span class="swatch-label light">primary-bright</span><span class="swatch-code light">#6fe0a8</span></div>
+          <div class="swatch" style="--c: #eafaf2"><span class="swatch-label">primary-tint</span><span class="swatch-code">#eafaf2</span></div>
+          <div class="swatch" style="--c: #063024"><span class="swatch-label light">dark</span><span class="swatch-code light">#063024</span></div>
+          <div class="swatch" style="--c: #163029"><span class="swatch-label light">text</span><span class="swatch-code light">#163029</span></div>
+          <div class="swatch" style="--c: #5d716a"><span class="swatch-label light">muted</span><span class="swatch-code light">#5d716a</span></div>
+          <div class="swatch" style="--c: #c3e34e"><span class="swatch-label">lime</span><span class="swatch-code">#c3e34e</span></div>
+          <div class="swatch" style="--c: #3b6bc4"><span class="swatch-label light">coral</span><span class="swatch-code light">#3b6bc4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — TIPOGRAFIA -->
+  <div class="slide" id="s3">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">02</span><span class="slide-tag">Tipografia</span></div>
+        <h2>Fontes do Sistema</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Space Grotesk para titulos (tecnico, moderno). Poppins para corpo (limpo, legivel, amigavel). JetBrains Mono para codigos e detalhes tecnicos.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="type-showcase">
+          <div class="type-block">
+            <span class="type-label">Display</span>
+            <span class="type-sample display">Space Grotesk</span>
+            <span class="type-weights">
+              <span class="weight-tag">400</span>
+              <span class="weight-tag">500</span>
+              <span class="weight-tag">600</span>
+              <span class="weight-tag">700</span>
+            </span>
+          </div>
+          <div class="type-block">
+            <span class="type-label">Corpo</span>
+            <span class="type-sample body">Poppins</span>
+            <span class="type-weights">
+              <span class="weight-tag">300</span>
+              <span class="weight-tag">400</span>
+              <span class="weight-tag">500</span>
+              <span class="weight-tag">600</span>
+              <span class="weight-tag">700</span>
+              <span class="weight-tag">800</span>
+              <span class="weight-tag">900</span>
+            </span>
+          </div>
+          <div class="type-block">
+            <span class="type-label">Detalhes</span>
+            <span class="type-sample mono">JetBrains Mono</span>
+            <span class="type-weights">
+              <span class="weight-tag">400</span>
+              <span class="weight-tag">500</span>
+              <span class="weight-tag">600</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — TOKENS -->
+  <div class="slide" id="s4">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">03</span><span class="slide-tag">Design Tokens</span></div>
+        <h2>Espacamentos & Bordas</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Tokens padronizados garantem consistencia visual. Bordas arredondadas (16/24/32px), sombras suaves com tons de verde e espacamentos seguem uma escala definida.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="token-grid">
+          <div class="token-card">
+            <div class="token-label">Border Radius</div>
+            <div class="token-value">--bc-radius-xl: 32px</div>
+            <div class="token-visual"><div class="radius-demo" style="border-radius:32px;"></div></div>
+          </div>
+          <div class="token-card">
+            <div class="token-label">Border Radius</div>
+            <div class="token-value">--bc-radius-lg: 24px</div>
+            <div class="token-visual"><div class="radius-demo" style="border-radius:24px;"></div></div>
+          </div>
+          <div class="token-card">
+            <div class="token-label">Border Radius</div>
+            <div class="token-value">--bc-radius-md: 16px</div>
+            <div class="token-visual"><div class="radius-demo" style="border-radius:16px;"></div></div>
+          </div>
+        </div>
+        <div class="token-grid" style="margin-top:12px;">
+          <div class="token-card">
+            <div class="token-label">Shadow</div>
+            <div class="token-value">--bc-shadow</div>
+            <div class="token-visual"><div class="shadow-demo" style="box-shadow:0 18px 50px rgba(7,64,46,.10);"></div></div>
+          </div>
+          <div class="token-card">
+            <div class="token-label">Shadow Strong</div>
+            <div class="token-value">--bc-shadow-strong</div>
+            <div class="token-visual"><div class="shadow-demo" style="box-shadow:0 26px 70px rgba(4,48,34,.16);"></div></div>
+          </div>
+          <div class="token-card">
+            <div class="token-label">Border Soft</div>
+            <div class="token-value">--bc-border-soft</div>
+            <div class="token-visual"><div class="shadow-demo" style="background:var(--surface); border:1px solid rgba(11,64,46,.08);"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 — GLASSMORPHISM -->
+  <div class="slide" id="s5">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">04</span><span class="slide-tag">Superficies</span></div>
+        <h2>Glassmorphism</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Elementos translucidos com blur criam profundidade. Superficies com backdrop-filter: blur(12px) e bordas translucidas para elegancia.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="glass-grid">
+          <div class="glass-demo">
+            <h3>Superficie Glass</h3>
+            <p>background: rgba(255,255,255,.55)<br>backdrop-filter: blur(12px)<br>border: 1px solid rgba(255,255,255,.3)</p>
+            <div class="glass-inner" style="  background: rgba(59,189,128,.15); color:var(--accent);">Conteudo interno</div>
+          </div>
+          <div class="glass-demo-bright">
+            <h3>Superficie Gradiente</h3>
+            <p>background: linear-gradient(160deg, #0f7a56, #0a5e43, #063024)<br>border: 1px solid rgba(255,255,255,.2)</p>
+            <div class="glass-inner" style="background:rgba(255,255,255,0.06); color:var(--primary-bright);">Conteudo interno</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 — BOTOES -->
+  <div class="slide" id="s6">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">05</span><span class="slide-tag">Componentes</span></div>
+        <h2>Botoes</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Botoes com border-radius 14px e gradiente verde (primary→primary-dark). Hover lift 3px. Sombras coloridas com tons de verde para harmonia visual.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="btn-grid">
+          <div class="btn-demo">
+            <button class="btn btn-primary">Primary</button>
+            <span class="btn-label">Gradiente</span>
+          </div>
+          <div class="btn-demo">
+            <button class="btn btn-dark">Dark</button>
+            <span class="btn-label">Superficie</span>
+          </div>
+          <div class="btn-demo">
+            <button class="btn btn-outline">Outline</button>
+            <span class="btn-label">Borda + fill</span>
+          </div>
+          <div class="btn-demo" style="background:var(--bg-soft); border-radius:14px; padding:16px; border:1px solid var(--line);">
+            <button class="btn btn-ghost">Ghost</button>
+            <span class="btn-label">Transparente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 — FEATURE CARDS -->
+  <div class="slide" id="s7">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">06</span><span class="slide-tag">Componentes</span></div>
+        <h2>Feature Cards</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Cards quadrados com hover reveal — fundo muda para gradiente verde escuro, descricao aparece com fade-in. Barra de destaque no topo desliza ao interagir.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon">👤</span>
+            <div class="feature-title">Habilidades Pessoais</div>
+            <div class="feature-desc">Autoconhecimento, empatia e competencias profissionais.</div>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">💻</span>
+            <div class="feature-title">Tecnologia</div>
+            <div class="feature-desc">Hardware, programacao, banco de dados e desenvolvimento.</div>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🌐</span>
+            <div class="feature-title">Ingles Tecnico</div>
+            <div class="feature-desc">Vocabulario e expressoes do mundo corporativo.</div>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📈</span>
+            <div class="feature-title">Educacao Financeira</div>
+            <div class="feature-desc">Planejamento e controle financeiro pessoal.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 — RESPONSIVO -->
+  <div class="slide" id="s8">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">07</span><span class="slide-tag">Layout</span></div>
+        <h2>Responsividade</h2>
+        <p class="reason">
+          <strong>Por que?</strong> Grid adaptativo com Bootstrap — de mobile a desktop. Breakpoints em 980px, 768px, 720px, 480px e 400px.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="responsive-grid">
+          <div style="text-align:center;">
+            <div class="device-mock" style="width:160px; margin:0 auto;">
+              <div class="device-bar"><span></span><span></span><span></span></div>
+              <div class="device-screen">
+                <div class="device-line" style="width:60%;"></div>
+                <div class="device-line" style="width:80%;"></div>
+                <div class="device-block"></div>
+                <div class="device-line" style="width:50%;"></div>
+              </div>
+            </div>
+            <div class="device-label">Mobile</div>
+            <div class="device-sublabel">col-12</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="device-mock" style="width:240px; margin:0 auto;">
+              <div class="device-bar"><span></span><span></span><span></span></div>
+              <div class="device-screen" style="flex-direction:row; flex-wrap:wrap; gap:8px;">
+                <div style="flex:1; min-width:45%;"><div class="device-line" style="width:60%;"></div><div class="device-block" style="height:35px;"></div></div>
+                <div style="flex:1; min-width:45%;"><div class="device-line" style="width:60%;"></div><div class="device-block" style="height:35px;"></div></div>
+              </div>
+            </div>
+            <div class="device-label">Tablet</div>
+            <div class="device-sublabel">col-sm-6</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="device-mock" style="width:300px; margin:0 auto;">
+              <div class="device-bar"><span></span><span></span><span></span></div>
+              <div class="device-screen" style="flex-direction:row; flex-wrap:wrap; gap:8px;">
+                <div style="flex:1; min-width:28%;"><div class="device-line"></div><div class="device-block" style="height:28px;"></div></div>
+                <div style="flex:1; min-width:28%;"><div class="device-line"></div><div class="device-block" style="height:28px;"></div></div>
+                <div style="flex:1; min-width:28%;"><div class="device-line"></div><div class="device-block" style="height:28px;"></div></div>
+              </div>
+            </div>
+            <div class="device-label">Desktop</div>
+            <div class="device-sublabel">col-lg-4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 — ENCERRAMENTO -->
+  <div class="slide" id="s9">
+    <div class="slide-bg"></div>
+    <div class="slide-content centered">
+      <span class="badge-v" style="background: rgba(59,189,128,.2); color: var(--primary-bright);">Design System</span>
+      <h1>Barracred Conecta</h1>
+      <p class="desc" style="max-width: 480px; margin-bottom: 24px;">
+        Transformando vidas atraves da educacao, tecnologia e oportunidades. Design System v2.0.
+      </p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+        <span class="weight-tag">Space Grotesk</span>
+        <span class="weight-tag">Poppins</span>
+        <span class="weight-tag">JetBrains Mono</span>
+        <span class="weight-tag">Glassmorphism</span>
+        <span class="weight-tag">Bootstrap 5</span>
+      </div>
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--ink-soft); margin-top: 20px; letter-spacing: .06em;">
+        Barra Bonita/SP · 2025
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="deck-nav">
+  <button class="deck-prev" id="prev" aria-label="Slide anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="deck-dots" id="dots"></div>
+  <button class="deck-next" id="next" aria-label="Proximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<script>
+const deck = document.getElementById('deck');
+const slides = deck.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+const dotsContainer = document.getElementById('dots');
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Slide ${i + 1}`);
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goTo(i) {
+  if (i < 0) i = 0;
+  if (i >= total) i = total - 1;
+  current = i;
+  deck.style.transform = `translateX(-${current * 100}vw)`;
+  document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
+}
+
+document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1); }
+});
+</script>
+</body>
+</html>
