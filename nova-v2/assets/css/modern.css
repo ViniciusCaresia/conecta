@@ -2058,7 +2058,7 @@ body::before { opacity: .5; }
 
 /* ============ NAVBAR BRAND ============ */
 .glass-nav.scrolled .navbar-brand {
-  background: rgba(59,189,128,.12);
+  background: none;
 }
 .glass-nav.scrolled .navbar-brand-item { filter: invert(1) hue-rotate(180deg); }
 
