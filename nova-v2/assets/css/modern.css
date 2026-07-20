@@ -1287,21 +1287,22 @@ a:focus-visible, button:focus-visible {
   max-width: min(330px, 78vw);
 }
 
-.footer-logo-wrap {
-  position: relative;
-  display: inline-block;
+.footer-logo {
+  display: block;
+  text-align: center;
 }
 
-.footer-logo-full {
-  filter: brightness(0) invert(1);
+.footer-logo-img {
+  display: block;
+  margin: 0 auto;
+  max-height: 42px;
+  width: auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.32));
+  transition: filter .3s ease;
 }
 
-.footer-logo-symbol {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  max-height: 100%;
+.footer-logo-img:hover {
+  filter: drop-shadow(0 6px 14px rgba(59,189,128,.4));
 }
 
 .footer-contact {

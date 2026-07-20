@@ -97,6 +97,15 @@ html, body {
 .slide-content > *:nth-child(3) { animation-delay: .2s; }
 .slide-content > *:nth-child(4) { animation-delay: .28s; }
 
+/* LOGO */
+.logo-img {
+  width: 120px; height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 20px rgba(59,189,128,.3));
+  animation: scaleIn .6s ease both;
+  animation-delay: .0s;
+}
+
 /* CAPA */
 .badge-v {
   font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
@@ -454,6 +463,68 @@ code {
   .token-grid, .glass-grid, .btn-grid, .feature-grid { grid-template-columns: 1fr; }
   .responsive-grid { grid-template-columns: 1fr; }
   .deck-nav { bottom: 14px; padding: 5px 10px; gap: 10px; }
+  .backlog-grid { grid-template-columns: 1fr !important; }
+}
+
+/* BACKLOG */
+.backlog-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.backlog-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; padding: 20px; text-align: left;
+  transition: transform .2s, border-color .2s;
+}
+
+.backlog-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59,189,128,.3);
+}
+
+.backlog-card-icon {
+  font-size: 20px; margin-bottom: 8px; display: block;
+}
+
+.backlog-card-title {
+  font-family: var(--display); font-size: 13px; font-weight: 700;
+  color: var(--ink); margin-bottom: 10px;
+}
+
+.backlog-list {
+  list-style: none; padding: 0; margin: 0;
+}
+
+.backlog-list li {
+  font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  padding: 4px 0; padding-left: 14px; position: relative;
+}
+
+.backlog-list li::before {
+  content: ""; position: absolute; left: 0; top: 10px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); opacity: .6;
+}
+
+.backlog-stat {
+  display: flex; gap: 12px; margin-top: 16px;
+  animation: scaleIn .5s ease both; animation-delay: .2s;
+}
+
+.backlog-stat-card {
+  flex: 1; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; padding: 20px; text-align: center;
+}
+
+.backlog-stat-num {
+  font-family: var(--display); font-size: 32px; font-weight: 700;
+  color: var(--accent); display: block;
+}
+
+.backlog-stat-label {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--ink-soft); margin-top: 4px; display: block;
 }
 </style>
 </head>
@@ -465,10 +536,11 @@ code {
   <div class="slide" id="s1">
     <div class="slide-bg"></div>
     <div class="slide-content centered">
+      <img src="assets/images/Símbolo.logo (2).png" alt="Logo Barracred Conecta" class="logo-img">
       <span class="badge-v">v2.0 · 2025</span>
       <h1>Barracred Conecta</h1>
       <p class="subtitle">Design System — Programa Social</p>
-      <p class="desc">As escolhas visuais do programa, os porques de cada decisao e o que vem pela frente.</p>
+      <p class="desc">As escolhas visuais do programa, os porquês de cada decisão e o que vem pela frente.</p>
     </div>
   </div>
 
@@ -479,7 +551,7 @@ code {
         <div class="slide-meta"><span class="slide-num">01</span><span class="slide-tag">Identidade Visual</span></div>
         <h2>Paleta de Cores</h2>
         <p class="reason">
-          <strong>Por que?</strong> Verde como identidade visual principal da marca Barracred. Fundo escuro verde para elegancia e contraste. Acentos em lime, coral e indigo para variações de status e acoes.
+          <strong>Por que?</strong> Verde como identidade visual principal da marca Barracred. Fundo escuro verde para elegância e contraste. Acentos em lime, coral e indigo para variações de status e ações.
         </p>
       </div>
       <div class="col-visual">
@@ -506,7 +578,7 @@ code {
         <div class="slide-meta"><span class="slide-num">02</span><span class="slide-tag">Tipografia</span></div>
         <h2>Fontes do Sistema</h2>
         <p class="reason">
-          <strong>Por que?</strong> Space Grotesk para titulos (tecnico, moderno). Poppins para corpo (limpo, legivel, amigavel). JetBrains Mono para codigos e detalhes tecnicos.
+          <strong>Por que?</strong> Space Grotesk para títulos (técnico, moderno). Poppins para corpo (limpo, legível, amigável). JetBrains Mono para códigos e detalhes técnicos.
         </p>
       </div>
       <div class="col-visual">
@@ -548,90 +620,41 @@ code {
     </div>
   </div>
 
-  <!-- 04 — TOKENS -->
-  <div class="slide" id="s4">
-    <div class="slide-content two-col">
-      <div class="col-text">
-        <div class="slide-meta"><span class="slide-num">03</span><span class="slide-tag">Design Tokens</span></div>
-        <h2>Espacamentos & Bordas</h2>
-        <p class="reason">
-          <strong>Por que?</strong> Tokens padronizados garantem consistencia visual. Bordas arredondadas (16/24/32px), sombras suaves com tons de verde e espacamentos seguem uma escala definida.
-        </p>
-      </div>
-      <div class="col-visual">
-        <div class="token-grid">
-          <div class="token-card">
-            <div class="token-label">Border Radius</div>
-            <div class="token-value">--bc-radius-xl: 32px</div>
-            <div class="token-visual"><div class="radius-demo" style="border-radius:32px;"></div></div>
-          </div>
-          <div class="token-card">
-            <div class="token-label">Border Radius</div>
-            <div class="token-value">--bc-radius-lg: 24px</div>
-            <div class="token-visual"><div class="radius-demo" style="border-radius:24px;"></div></div>
-          </div>
-          <div class="token-card">
-            <div class="token-label">Border Radius</div>
-            <div class="token-value">--bc-radius-md: 16px</div>
-            <div class="token-visual"><div class="radius-demo" style="border-radius:16px;"></div></div>
-          </div>
-        </div>
-        <div class="token-grid" style="margin-top:12px;">
-          <div class="token-card">
-            <div class="token-label">Shadow</div>
-            <div class="token-value">--bc-shadow</div>
-            <div class="token-visual"><div class="shadow-demo" style="box-shadow:0 18px 50px rgba(7,64,46,.10);"></div></div>
-          </div>
-          <div class="token-card">
-            <div class="token-label">Shadow Strong</div>
-            <div class="token-value">--bc-shadow-strong</div>
-            <div class="token-visual"><div class="shadow-demo" style="box-shadow:0 26px 70px rgba(4,48,34,.16);"></div></div>
-          </div>
-          <div class="token-card">
-            <div class="token-label">Border Soft</div>
-            <div class="token-value">--bc-border-soft</div>
-            <div class="token-visual"><div class="shadow-demo" style="background:var(--surface); border:1px solid rgba(11,64,46,.08);"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- 05 — GLASSMORPHISM -->
   <div class="slide" id="s5">
     <div class="slide-content two-col">
       <div class="col-text">
-        <div class="slide-meta"><span class="slide-num">04</span><span class="slide-tag">Superficies</span></div>
+        <div class="slide-meta"><span class="slide-num">03</span><span class="slide-tag">Superfícies</span></div>
         <h2>Glassmorphism</h2>
         <p class="reason">
-          <strong>Por que?</strong> Elementos translucidos com blur criam profundidade. Superficies com backdrop-filter: blur(12px) e bordas translucidas para elegancia.
+          <strong>Por que?</strong> Elementos translucidos com blur criam profundidade. Superfícies com backdrop-filter: blur(12px) e bordas translucidas para elegância.
         </p>
       </div>
       <div class="col-visual">
         <div class="glass-grid">
           <div class="glass-demo">
-            <h3>Superficie Glass</h3>
+            <h3>Superfície Glass</h3>
             <p>background: rgba(255,255,255,.55)<br>backdrop-filter: blur(12px)<br>border: 1px solid rgba(255,255,255,.3)</p>
-            <div class="glass-inner" style="  background: rgba(59,189,128,.15); color:var(--accent);">Conteudo interno</div>
+            <div class="glass-inner" style="  background: rgba(59,189,128,.15); color:var(--accent);">Conteúdo interno</div>
           </div>
           <div class="glass-demo-bright">
-            <h3>Superficie Gradiente</h3>
+            <h3>Superfície Gradiente</h3>
             <p>background: linear-gradient(160deg, #0f7a56, #0a5e43, #063024)<br>border: 1px solid rgba(255,255,255,.2)</p>
-            <div class="glass-inner" style="background:rgba(255,255,255,0.06); color:var(--primary-bright);">Conteudo interno</div>
+            <div class="glass-inner" style="background:rgba(255,255,255,0.06); color:var(--primary-bright);">Conteúdo interno</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 06 — BOTOES -->
+  <!-- 06 — BOTÕES -->
   <div class="slide" id="s6">
     <div class="slide-content two-col">
       <div class="col-text">
-        <div class="slide-meta"><span class="slide-num">05</span><span class="slide-tag">Componentes</span></div>
-        <h2>Botoes</h2>
+        <div class="slide-meta"><span class="slide-num">04</span><span class="slide-tag">Componentes</span></div>
+        <h2>Botões</h2>
         <p class="reason">
-          <strong>Por que?</strong> Botoes com border-radius 14px e gradiente verde (primary→primary-dark). Hover lift 3px. Sombras coloridas com tons de verde para harmonia visual.
+          <strong>Por que?</strong> Botões com border-radius 14px e gradiente verde (primary→primary-dark). Hover lift 3px. Sombras coloridas com tons de verde para harmonia visual.
         </p>
       </div>
       <div class="col-visual">
@@ -642,7 +665,7 @@ code {
           </div>
           <div class="btn-demo">
             <button class="btn btn-dark">Dark</button>
-            <span class="btn-label">Superficie</span>
+            <span class="btn-label">Superfície</span>
           </div>
           <div class="btn-demo">
             <button class="btn btn-outline">Outline</button>
@@ -657,48 +680,11 @@ code {
     </div>
   </div>
 
-  <!-- 07 — FEATURE CARDS -->
-  <div class="slide" id="s7">
-    <div class="slide-content two-col">
-      <div class="col-text">
-        <div class="slide-meta"><span class="slide-num">06</span><span class="slide-tag">Componentes</span></div>
-        <h2>Feature Cards</h2>
-        <p class="reason">
-          <strong>Por que?</strong> Cards quadrados com hover reveal — fundo muda para gradiente verde escuro, descricao aparece com fade-in. Barra de destaque no topo desliza ao interagir.
-        </p>
-      </div>
-      <div class="col-visual">
-        <div class="feature-grid">
-          <div class="feature-card">
-            <span class="feature-icon">👤</span>
-            <div class="feature-title">Habilidades Pessoais</div>
-            <div class="feature-desc">Autoconhecimento, empatia e competencias profissionais.</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">💻</span>
-            <div class="feature-title">Tecnologia</div>
-            <div class="feature-desc">Hardware, programacao, banco de dados e desenvolvimento.</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🌐</span>
-            <div class="feature-title">Ingles Tecnico</div>
-            <div class="feature-desc">Vocabulario e expressoes do mundo corporativo.</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">📈</span>
-            <div class="feature-title">Educacao Financeira</div>
-            <div class="feature-desc">Planejamento e controle financeiro pessoal.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 08 — RESPONSIVO -->
+  <!-- 07 — RESPONSIVO -->
   <div class="slide" id="s8">
     <div class="slide-content two-col">
       <div class="col-text">
-        <div class="slide-meta"><span class="slide-num">07</span><span class="slide-tag">Layout</span></div>
+        <div class="slide-meta"><span class="slide-num">05</span><span class="slide-tag">Layout</span></div>
         <h2>Responsividade</h2>
         <p class="reason">
           <strong>Por que?</strong> Grid adaptativo com Bootstrap — de mobile a desktop. Breakpoints em 980px, 768px, 720px, 480px e 400px.
@@ -747,14 +733,222 @@ code {
     </div>
   </div>
 
-  <!-- 09 — ENCERRAMENTO -->
-  <div class="slide" id="s9">
+  <!-- 08 — VISÃO GERAL -->
+  <div class="slide" id="s8b">
+    <div class="slide-content">
+      <div class="slide-meta"><span class="slide-num">06</span><span class="slide-tag">Backlog</span></div>
+      <h2>Backlog do Projeto</h2>
+      <p class="reason" style="margin-bottom:20px;">
+        Panorama completo das tarefas pendentes organizadas por área de atuação. Cada item representa uma melhoria concreta para o site do Barracred Conecta.
+      </p>
+      <div class="backlog-stat">
+        <div class="backlog-stat-card">
+          <span class="backlog-stat-num">7</span>
+          <span class="backlog-stat-label">Categorias</span>
+        </div>
+        <div class="backlog-stat-card">
+          <span class="backlog-stat-num">38</span>
+          <span class="backlog-stat-label">Itens Totais</span>
+        </div>
+        <div class="backlog-stat-card">
+          <span class="backlog-stat-num">6</span>
+          <span class="backlog-stat-label">Páginas</span>
+        </div>
+        <div class="backlog-stat-card">
+          <span class="backlog-stat-num">1</span>
+          <span class="backlog-stat-label">Marketing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 — BACKLOG: PÁGINA INICIAL -->
+  <div class="slide" id="s9b">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">07</span><span class="slide-tag">Backlog — Home</span></div>
+        <h2>Página Inicial</h2>
+        <p class="reason">
+          <strong>Objetivo?</strong> Reforçar a identidade visual na primeira impressão. Simplificar o hero section e destacar a CTA principal.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="backlog-grid" style="grid-template-columns:1fr;">
+          <div class="backlog-card">
+            <span class="backlog-card-icon">🟢</span>
+            <div class="backlog-card-title">Itens Pendentes — Home</div>
+            <ul class="backlog-list">
+              <li>Ajustar vídeo de fundo</li>
+              <li>Melhorar estrutura da primeira seção</li>
+              <li>Trocar a frase principal</li>
+              <li>Remover informações desnecessárias</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 — BACKLOG: DESIGN / INTERFACE -->
+  <div class="slide" id="s10b">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">08</span><span class="slide-tag">Backlog — Design</span></div>
+        <h2>Design &amp; Interface</h2>
+        <p class="reason">
+          <strong>Objetivo?</strong> Padronizar a experiência visual em todo o site. Ajustar tipografia, hovers, iconografia e contraste para manter consistência com o Design System.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="backlog-grid">
+          <div class="backlog-card">
+            <span class="backlog-card-icon">🎨</span>
+            <div class="backlog-card-title">Tipografia & Cores</div>
+            <ul class="backlog-list">
+              <li>Ajustar tamanho das fontes</li>
+              <li>Ajustar layout</li>
+            </ul>
+          </div>
+          <div class="backlog-card">
+            <span class="backlog-card-icon">✨</span>
+            <div class="backlog-card-title">Interações & Elementos</div>
+            <ul class="backlog-list">
+              <li>Aumentar tamanho das logos</li>
+              <li>Corrigir hover do primeiro card</li>
+              <li>Melhorar hover das Trilhas</li>
+              <li>Melhorar hover das Informações</li>
+            </ul>
+          </div>
+          <div class="backlog-card">
+            <span class="backlog-card-icon">📐</span>
+            <div class="backlog-card-title">Conteúdo Visual</div>
+            <ul class="backlog-list">
+              <li>Reduzir textos dos cards</li>
+              <li>Padronizar ícones</li>
+              <li>Exibir informações no hover dos cards</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 — BACKLOG: QUEM SOMOS + A TRILHA -->
+  <div class="slide" id="s11b">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">09</span><span class="slide-tag">Backlog — Páginas</span></div>
+        <h2>Quem Somos &amp; A Trilha</h2>
+        <p class="reason">
+          <strong>Objetivo?</strong> Simplificar a comunicação da empresa e tornar a página de trilhas mais engajadas com depoimentos e interações claras.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="backlog-grid">
+          <div class="backlog-card">
+            <span class="backlog-card-icon">👥</span>
+            <div class="backlog-card-title">Quem Somos</div>
+            <ul class="backlog-list">
+              <li>Reduzir textos</li>
+              <li>Melhorar distribuição das informações</li>
+            </ul>
+          </div>
+          <div class="backlog-card">
+            <span class="backlog-card-icon">🛤️</span>
+            <div class="backlog-card-title">A Trilha</div>
+            <ul class="backlog-list">
+              <li>Revisar cards</li>
+              <li>Adicionar texto explicativo</li>
+              <li>Criar carrossel de depoimentos</li>
+              <li>Ajustar hover</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 — BACKLOG: CONTEÚDOS + PROJETOS -->
+  <div class="slide" id="s12b">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">10</span><span class="slide-tag">Backlog — Páginas</span></div>
+        <h2>Conteúdos &amp; Projetos</h2>
+        <p class="reason">
+          <strong>Objetivo?</strong> Integrar conteúdo educacional com a jornada do aluno. Dar visibilidade aos professores e organizar os projetos de forma clara.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="backlog-grid">
+          <div class="backlog-card">
+            <span class="backlog-card-icon">📚</span>
+            <div class="backlog-card-title">Conteúdos</div>
+            <ul class="backlog-list">
+              <li>Integrar Jornada com Conteúdos</li>
+              <li>Revisar item "Conteúdo" na navbar</li>
+              <li>Adicionar conteúdos relacionados</li>
+              <li>Inserir foto e nome dos professores</li>
+              <li>Adicionar links úteis</li>
+            </ul>
+          </div>
+          <div class="backlog-card">
+            <span class="backlog-card-icon">💼</span>
+            <div class="backlog-card-title">Projetos</div>
+            <ul class="backlog-list">
+              <li>Ajustar layout</li>
+              <li>Organizar conteúdos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 — BACKLOG: COMO PARTICIPAR + MARKETING -->
+  <div class="slide" id="s13b">
+    <div class="slide-content two-col">
+      <div class="col-text">
+        <div class="slide-meta"><span class="slide-num">11</span><span class="slide-tag">Backlog — Páginas</span></div>
+        <h2>Como Participar &amp; Marketing</h2>
+        <p class="reason">
+          <strong>Objetivo?</strong> Facilitar o processo de inscrição e padronizar todo o conteúdo textual do site com revisão ortográfica e redução de textos.
+        </p>
+      </div>
+      <div class="col-visual">
+        <div class="backlog-grid">
+          <div class="backlog-card">
+            <span class="backlog-card-icon">🙋</span>
+            <div class="backlog-card-title">Como Participar</div>
+            <ul class="backlog-list">
+              <li>Revisar título</li>
+              <li>Destacar requisitos</li>
+              <li>Escurecer fundos</li>
+              <li>Adicionar fotos</li>
+              <li>Inserir chamadas para ação</li>
+            </ul>
+          </div>
+          <div class="backlog-card">
+            <span class="backlog-card-icon">📢</span>
+            <div class="backlog-card-title">Marketing / Conteúdo</div>
+            <ul class="backlog-list">
+              <li>Revisar textos</li>
+              <li>Reduzir textos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 — ENCERRAMENTO -->
+  <div class="slide" id="s14">
     <div class="slide-bg"></div>
     <div class="slide-content centered">
+      <img src="assets/images/Símbolo.logo (2).png" alt="Logo Barracred Conecta" class="logo-img">
       <span class="badge-v" style="background: rgba(59,189,128,.2); color: var(--primary-bright);">Design System</span>
       <h1>Barracred Conecta</h1>
       <p class="desc" style="max-width: 480px; margin-bottom: 24px;">
-        Transformando vidas atraves da educacao, tecnologia e oportunidades. Design System v2.0.
+        Transformando vidas através da educação, tecnologia e oportunidades. Design System v2.0.
       </p>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
         <span class="weight-tag">Space Grotesk</span>
@@ -774,7 +968,7 @@ code {
 <div class="deck-nav">
   <button class="deck-prev" id="prev" aria-label="Slide anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="deck-dots" id="dots"></div>
-  <button class="deck-next" id="next" aria-label="Proximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="deck-next" id="next" aria-label="Próximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
 
 <script>
