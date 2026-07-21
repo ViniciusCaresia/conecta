@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Relatório de Auditoria - Barracred Conecta v2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Relatório completo de análise e auditoria do projeto Barracred Conecta v2">
+  <meta name="author" content="opencode">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/themify-icons@0.1.2/css/themify-icons.min.css">
+  <style>
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --bc-primary: #3bbd80;
+      --bc-primary-dark: #0f7a56;
+      --bc-primary-deep: #07503c;
+      --bc-primary-bright: #6fe0a8;
+      --bc-primary-soft: rgba(59, 189, 128, .16);
+      --bc-dark: #063024;
+      --bc-deep: #03110e;
+      --bc-text: #163029;
+      --bc-muted: #5d716a;
+      --bc-surface: rgba(255,255,255,.78);
+      --bc-surface-strong: rgba(255,255,255,.94);
+      --bc-white: #ffffff;
+      --bc-offwhite: #f4fbf7;
+      --bc-border: rgba(59, 189, 128, .22);
+      --bc-shadow: 0 18px 50px rgba(7, 64, 46, .10);
+      --bc-shadow-strong: 0 26px 70px rgba(4, 48, 34, .16);
+      --bc-radius-xl: 32px;
+      --bc-radius-lg: 24px;
+      --bc-radius-md: 16px;
+      --coral-orange: #ff5a45;
+      --coral-deep-orange: #e2432f;
+      --indigo: #1c2a5e;
+      --lime: #c3e34e;
+      --line: rgba(11, 64, 46, .12);
+      --display: "Space Grotesk", "Poppins", sans-serif;
+      --body-font: "Poppins", Arial, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+      --wrap: 1180px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
+    body {
+      font-family: var(--body-font);
+      color: var(--bc-text);
+      background:
+        radial-gradient(circle at 6% 8%, rgba(59,189,128,.16), transparent 26rem),
+        radial-gradient(circle at 94% 4%, rgba(15,122,86,.12), transparent 30rem),
+        radial-gradient(circle at 50% 120%, rgba(111,224,168,.18), transparent 38rem),
+        linear-gradient(180deg, #ffffff 0%, #f3fbf6 46%, #ffffff 100%);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(59,189,128,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,189,128,.045) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 72%);
+      pointer-events: none;
+    }
+
+    ::selection { background: var(--bc-primary); color: #fff; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bc-offwhite); }
+    ::-webkit-scrollbar-thumb { background: var(--bc-primary); border-radius: 999px; }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--bc-dark);
+      letter-spacing: -.035em;
+      font-family: var(--display);
+    }
+
+    p { color: var(--bc-muted); line-height: 1.85; }
+
+    a { color: var(--bc-primary); text-decoration: none; transition: color .22s ease; }
+    a:hover { color: var(--bc-primary-dark); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ============ HEADER / NAV ============ */
+    .report-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      padding: 14px clamp(10px, 2vw, 28px);
+    }
+
+    .report-nav {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      background: rgba(3, 17, 14, .74);
+      backdrop-filter: blur(18px);
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 18px 55px rgba(0,0,0,.16);
+    }
+
+    .report-nav .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .report-nav .brand-wrap .nav-logo {
+      height: 30px;
+      width: auto;
+    }
+
+    .report-nav .brand-wrap .nav-badge {
+      display: inline-block;
+      background: var(--coral-orange);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #fff;
+    }
+
+    .report-nav .nav-links {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .report-nav .nav-links a {
+      color: rgba(255,255,255,.8);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      transition: all .22s ease;
+    }
+
+    .report-nav .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.16);
+    }
+
+    /* ============ HERO ============ */
+    .report-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      position: relative;
+    }
+
+    .report-hero-content { max-width: 800px; }
+
+    .report-hero .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(59, 189, 128, .12);
+      border: 1px solid var(--bc-border);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--bc-primary-dark);
+      margin-bottom: 20px;
+    }
+
+    .report-hero .logo-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral-orange);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
+    .report-hero h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .report-hero h2 .text-grad {
+      background: linear-gradient(135deg, var(--bc-primary), var(--bc-primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .report-hero p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .report-hero .hero-stats {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      background: var(--bc-surface-strong);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--bc-border);
+      border-radius: var(--bc-radius-md);
+      padding: 16px 28px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .hero-stat .num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--bc-primary-dark);
+      font-family: var(--display);
+    }
+
+    .hero-stat .label {
+      font-size: .72rem;
+      color: var(--bc-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ============ CONTAINER / SECTIONS ============ */
+    .container {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-modern {
+      padding: 4rem 0;
+    }
+
+    .section-modern .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-modern .section-header .tag {
+      display: inline-block;
+      background: var(--bc-primary-soft);
+      color: var(--bc-primary-dark);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .section-modern .section-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+    }
+
+    .section-modern .section-header p {
+      max-width: 560px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--bc-primary), var(--bc-primary-bright));
+      border-radius: 999px;
+      margin: 16px 0;
+    }
+
+    /* ============ SEVERITY BADGES ============ */
+    .badge-critical {
+      display: inline-block;
+      background: var(--coral-orange);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-high {
+      display: inline-block;
+      background: #e67e22;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-medium {
+      display: inline-block;
+      background: #f1c40f;
+      color: #1a1a1a;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-low {
+      display: inline-block;
+      background: var(--bc-primary);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* ============ CARDS ============ */
+    .glass-card {
+      background: var(--bc-surface-strong);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--bc-border);
+      border-radius: var(--bc-radius-lg);
+      padding: 28px;
+      box-shadow: var(--bc-shadow);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--bc-shadow-strong);
+    }
+
+    .glass-card.issue-card {
+      margin-bottom: 16px;
+    }
+
+    .glass-card.issue-card .issue-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .glass-card.issue-card .issue-header .icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .glass-card.issue-card .issue-header .icon.critical { background: var(--coral-orange); }
+    .glass-card.issue-card .issue-header .icon.high { background: #e67e22; }
+    .glass-card.issue-card .issue-header .icon.medium { background: #f1c40f; color: #1a1a1a; }
+    .glass-card.issue-card .issue-header .icon.low { background: var(--bc-primary); }
+
+    .glass-card.issue-card .issue-header .info { flex: 1; }
+
+    .glass-card.issue-card .issue-header .info h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .glass-card.issue-card .issue-header .info .meta {
+      font-size: .78rem;
+      color: var(--bc-muted);
+      font-family: var(--mono);
+    }
+
+    .glass-card.issue-card .issue-desc {
+      font-size: .88rem;
+      color: var(--bc-text);
+      padding-left: 48px;
+    }
+
+    .glass-card.issue-card .issue-desc strong {
+      color: var(--bc-primary-dark);
+    }
+
+    .glass-card.issue-card .issue-solution {
+      padding-left: 48px;
+      margin-top: 8px;
+      font-size: .85rem;
+      color: var(--bc-primary-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .glass-card.issue-card .issue-solution .ti {
+      margin-top: 2px;
+    }
+
+    /* ============ TABLE ============ */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: .85rem;
+    }
+
+    .report-table thead th {
+      background: var(--bc-dark);
+      color: #fff;
+      font-weight: 700;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 12px 16px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+    }
+
+    .report-table thead th:first-child { border-radius: 12px 0 0 0; }
+    .report-table thead th:last-child { border-radius: 0 12px 0 0; }
+
+    .report-table tbody tr { transition: background .2s ease; }
+    .report-table tbody tr:hover { background: var(--bc-primary-soft); }
+    .report-table tbody tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+    .report-table tbody tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+
+    .report-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--bc-border-soft);
+      vertical-align: top;
+    }
+
+    .report-table td .severity-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .report-table td .severity-dot.critical { background: var(--coral-orange); }
+    .report-table td .severity-dot.high { background: #e67e22; }
+    .report-table td .severity-dot.medium { background: #f1c40f; }
+    .report-table td .severity-dot.low { background: var(--bc-primary); }
+
+    /* ============ STATS / SUMMARY ============ */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .summary-stat {
+      background: var(--bc-surface-strong);
+      border: 1px solid var(--bc-border);
+      border-radius: var(--bc-radius-md);
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .summary-stat .num {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: var(--display);
+      color: var(--bc-dark);
+    }
+
+    .summary-stat .num.critical { color: var(--coral-orange); }
+    .summary-stat .num.high { color: #e67e22; }
+    .summary-stat .num.medium { color: #d4a017; }
+    .summary-stat .num.low { color: var(--bc-primary); }
+
+    .summary-stat .label {
+      font-size: .78rem;
+      color: var(--bc-muted);
+      font-weight: 600;
+    }
+
+    .summary-stat .sub {
+      font-size: .72rem;
+      color: var(--bc-border);
+      margin-top: 4px;
+    }
+
+    /* ============ SEVERITY GROUP ============ */
+    .severity-group { margin-bottom: 40px; }
+
+    .severity-group .group-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .severity-group .group-header .group-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .severity-group .group-header .group-icon.high { background: var(--coral-orange); }
+    .severity-group .group-header .group-icon.medium { background: #e67e22; }
+    .severity-group .group-header .group-icon.seo { background: #f1c40f; }
+    .severity-group .group-header .group-icon.low { background: var(--bc-primary); }
+    .severity-group .group-header .group-icon.maintenance { background: var(--indigo); }
+
+    .severity-group .group-header h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .severity-group .group-header .count {
+      font-size: .78rem;
+      color: var(--bc-muted);
+      font-weight: 600;
+    }
+
+    /* ============ STATS ROW ============ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .mini-stat {
+      background: var(--bc-surface-strong);
+      border: 1px solid var(--bc-border);
+      border-radius: var(--bc-radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mini-stat .ti {
+      font-size: 1.4rem;
+      color: var(--bc-primary);
+    }
+
+    .mini-stat .ms .ms-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--bc-dark);
+      font-family: var(--display);
+    }
+
+    .mini-stat .ms .ms-label {
+      font-size: .68rem;
+      color: var(--bc-muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 600;
+    }
+
+    /* ============ DEAD CODE BLOCK ============ */
+    .code-block {
+      background: rgba(3, 17, 14, .06);
+      border: 1px solid var(--bc-border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--mono);
+      font-size: .78rem;
+      overflow-x: auto;
+      margin: 8px 0;
+    }
+
+    .code-block .file {
+      color: var(--bc-primary-dark);
+      font-weight: 700;
+    }
+
+    /* ============ FOOTER ============ */
+    .report-footer {
+      background: var(--bc-dark);
+      color: rgba(255,255,255,.7);
+      padding: 32px 24px;
+      margin-top: 60px;
+    }
+
+    .report-footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .report-footer .footer-brand {
+      font-family: 'Coolvetica', var(--display);
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .report-footer .footer-brand span {
+      color: var(--bc-primary);
+    }
+
+    .report-footer a { color: var(--bc-primary-bright); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 768px) {
+      .report-nav { flex-direction: column; gap: 8px; padding: 10px 16px; border-radius: 20px; }
+      .report-nav .nav-links { justify-content: center; }
+      .report-hero { min-height: auto; padding-top: 140px; }
+      .report-hero .hero-stats { flex-direction: column; align-items: center; }
+      .glass-card.issue-card .issue-desc,
+      .glass-card.issue-card .issue-solution { padding-left: 0; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .section-modern { padding: 2.5rem 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="report-header">
+    <nav class="report-nav">
+      <div class="brand-wrap">
+        <img class="nav-logo" src="assets/images/logo.png" alt="Logo Barracred Conecta">
+        <span class="nav-badge">auditoria</span>
+      </div>
+      <div class="nav-links">
+        <a href="#criticos">Cr&iacute;ticos</a>
+        <a href="#medios">M&eacute;dios</a>
+        <a href="#baixos">Baixos</a>
+        <a href="#estatisticas">Estat&iacute;sticas</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="report-hero">
+    <div class="report-hero-content">
+      <div class="logo-badge">
+        <span class="dot"></span>
+        <img src="assets/images/logo.png" alt="" style="height:18px;width:auto;opacity:.7;display:inline-block;vertical-align:middle;">
+        Relat&oacute;rio de An&aacute;lise
+      </div>
+      <h2>
+        Auditoria Completa &mdash;<br>
+        <span class="text-grad">Barracred Conecta v2</span>
+      </h2>
+      <p>
+        Relat&oacute;rio t&eacute;cnico com todos os problemas encontrados no projeto,
+        organizados por severidade, com an&aacute;lise cruzada de arquivos e
+        recomenda&ccedil;&otilde;es pr&aacute;ticas de corre&ccedil;&atilde;o.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">6</div>
+          <div class="label">Cr&iacute;ticos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">10</div>
+          <div class="label">M&eacute;dios</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">10</div>
+          <div class="label">Baixos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">25</div>
+          <div class="label">Arquivos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUMARIO EXECUTIVO ============ -->
+  <section class="section-modern">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Resumo</span>
+        <h2>Sum&aacute;rio Executivo</h2>
+        <div class="divider"></div>
+        <p>Vis&atilde;o geral do estado do projeto com indicadores quantitativos e qualitativos.</p>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-stat">
+          <div class="num critical">6</div>
+          <div class="label">Cr&iacute;ticos</div>
+          <div class="sub">Bug / funcionalidade quebrada</div>
+        </div>
+        <div class="summary-stat">
+          <div class="num high">3</div>
+          <div class="label">Altos</div>
+          <div class="sub">Conflitos de CSS / dead code</div>
+        </div>
+        <div class="summary-stat">
+          <div class="num medium">7</div>
+          <div class="label">M&eacute;dios</div>
+          <div class="sub">SEO / acessibilidade / performance</div>
+        </div>
+        <div class="summary-stat">
+          <div class="num low">10</div>
+          <div class="label">Baixos</div>
+          <div class="sub">Manutenibilidade / qualidade</div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="mini-stat">
+          <span class="ti ti-files"></span>
+          <div class="ms">
+            <div class="ms-num">21.497</div>
+            <div class="ms-label">Linhas style.css</div>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <span class="ti ti-pencil-alt"></span>
+          <div class="ms">
+            <div class="ms-num">2.073</div>
+            <div class="ms-label">Linhas modern.css</div>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <span class="ti ti-layout"></span>
+          <div class="ms">
+            <div class="ms-num">1.940</div>
+            <div class="ms-label">Linhas HTML total</div>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <span class="ti ti-alert"></span>
+          <div class="ms">
+            <div class="ms-num">~60+</div>
+            <div class="ms-label">!important no CSS</div>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <span class="ti ti-share-alt"></span>
+          <div class="ms">
+            <div class="ms-num">55+</div>
+            <div class="ms-label">Chamadas externas</div>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <span class="ti ti-close"></span>
+          <div class="ms">
+            <div class="ms-num">2</div>
+            <div class="ms-label">Arquivos mortos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CRITICOS ============ -->
+  <section id="criticos" class="section-modern">
+    <div class="container">
+      <div class="severity-group">
+        <div class="group-header">
+          <div class="group-icon high">
+            <span class="ti ti-alert"></span>
+          </div>
+          <div>
+            <h3>Cr&iacute;ticos</h3>
+            <span class="count">6 problemas &mdash; Bugs e funcionalidades quebradas</span>
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-close"></span></div>
+            <div class="info">
+              <h4>Preloader n&atilde;o funciona</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; index.js:64</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O preloader usa a classe <strong>animate__animated animate__fadeOut</strong> (do Animate.css), mas
+            a biblioteca <strong>n&atilde;o est&aacute; carregada</strong> no projeto. O preloader simplesmente
+            desaparece abruptamente ap&oacute;s 200ms, sem anima&ccedil;&atilde;o de sa&iacute;da.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar CDN do Animate.css ou substituir por transi&ccedil;&atilde;o CSS nativa em <code>modern.css</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-trash"></span></div>
+            <div class="info">
+              <h4>C&oacute;digo morto: Jarallax</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; index.js:37</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A linha <strong>home.setAttribute('data-jarallax-original-styles', ...)</strong> referencia a biblioteca
+            Jarallax, que <strong>n&atilde;o est&aacute; carregada</strong> em nenhum lugar do projeto.
+            C&oacute;digo morto de uma vers&atilde;o anterior.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Remover a linha 37 de <code>index.js</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-file"></span></div>
+            <div class="info">
+              <h4>helpers.js nunca &eacute; carregado</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; assets/js/helpers.js</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O arquivo <strong>helpers.js</strong> n&atilde;o &eacute; referenciado em nenhum &lt;script&gt; no HTML.
+            Al&eacute;m disso, ele duplica as fun&ccedil;&otilde;es <strong>select()</strong>,
+            <strong>selectAll()</strong> e <strong>isVariableDefined()</strong> j&aacute; existentes em
+            <code>index.js</code>, e cont&eacute;m um bug l&oacute;gico na fun&ccedil;&atilde;o
+            <code>isVariableDefined</code> (<code>typeof !!el</code> sempre retorna <code>"boolean"</code>).
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Deletar o arquivo <code>helpers.js</code> e unificar as fun&ccedil;&otilde;es em <code>index.js</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-file"></span></div>
+            <div class="info">
+              <h4>index.ts &eacute; c&oacute;digo morto</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; index.ts</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O arquivo apenas executa <strong>console.log("Hello via Bun!")</strong>.
+            N&atilde;o serve ao site e nunca &eacute; referenciado pelo HTML ou pelo servidor.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Deletar <code>index.ts</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-palette"></span></div>
+            <div class="info">
+              <h4>Conflito .btn-primary (verde vs laranja)</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; style.css:3417 + modern.css:209</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O Bootstrap define <strong>.btn-primary</strong> com <code>background-color: #4cbd89</code> (verde),
+            mas o <code>modern.css</code> redefine com <code>background: var(--coral-orange)</code> (laranja,
+            <code>#ff5a45</code>). Isso cria uma <strong>inconsist&ecirc;ncia grave de identidade visual</strong>.
+            O mesmo ocorre com <strong>.btn-dark</strong> e <strong>.btn</strong> base.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Definir uma paleta &uacute;nica e remover as duplicatas de <code>style.css</code> ou usar PurgeCSS
+            para eliminar o Bootstrap n&atilde;o utilizado.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon critical"><span class="ti ti-cloud"></span></div>
+            <div class="info">
+              <h4>55+ chamadas externas para avatares</h4>
+              <div class="meta"><span class="badge-critical">Cr&iacute;tico</span> &middot; index.html:479-841</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            Todos os cards de alunos usam a URL <strong>ui-avatars.com</strong> para gerar avatares via API.
+            S&atilde;o mais de 55 requisi&ccedil;&otilde;es externas. Se o servi&ccedil;o ficar fora do ar,
+            todos os avatares dos alunos ser&atilde;o perdidos.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Substituir por placeholders locais, gerar os avatares via CSS com as iniciais, ou armazenar as
+            imagens localmente.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ALTOS / MEDIOS ============ -->
+  <section id="medios" class="section-modern">
+    <div class="container">
+      <div class="severity-group">
+        <div class="group-header">
+          <div class="group-icon medium">
+            <span class="ti ti-alert"></span>
+          </div>
+          <div>
+            <h3>Altos &amp; M&eacute;dios</h3>
+            <span class="count">10 problemas &mdash; SEO, acessibilidade, performance e seguran&ccedil;a</span>
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon high"><span class="ti ti-search"></span></div>
+            <div class="info">
+              <h4>Sem meta tags Open Graph / Twitter Card</h4>
+              <div class="meta"><span class="badge-high">Alto</span> &middot; index.html:head</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            Faltam tags <strong>og:title</strong>, <strong>og:description</strong>, <strong>og:image</strong>,
+            <strong>og:url</strong> e <strong>twitter:card</strong>. O site n&atilde;o exibe preview
+            quando compartilhado em redes sociais.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar as meta tags OG e Twitter Card no <code>&lt;head&gt;</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon high"><span class="ti ti-file"></span></div>
+            <div class="info">
+              <h4>style.css com 21.497 linhas n&atilde;o minificado</h4>
+              <div class="meta"><span class="badge-high">Alto</span> &middot; assets/css/style.css</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            Bootstrap 5.1.0 completo, n&atilde;o minificado e com muitos componentes n&atilde;o utilizados
+            (tabelas, formul&aacute;rios, valida&ccedil;&atilde;o, tooltips, popovers, etc.). O projeto
+            usa apenas grid, navbar, collapse, modal e utilities b&aacute;sicas.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Usar PurgeCSS para extrair apenas os estilos utilizados, ou fazer um build customizado do Bootstrap.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon high"><span class="ti ti-image"></span></div>
+            <div class="info">
+              <h4>Nenhuma imagem usa lazy loading</h4>
+              <div class="meta"><span class="badge-high">Alto</span> &middot; index.html (todas as imagens)</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            Nenhuma das <strong>60+ imagens</strong> do site usa o atributo <strong>loading="lazy"</strong>.
+            Todas carregam eager, impactando o tempo de carregamento inicial.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar <code>loading="lazy"</code> a todas as imagens abaixo da dobra.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-wheelchair"></span></div>
+            <div class="info">
+              <h4>Falta de atributos ARIA e acessibilidade</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; index.html (v&aacute;rios locais)</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O canvas de ondas (<code>&lt;canvas&gt;</code>) n&atilde;o tem <strong>aria-label</strong>.
+            Os links sociais do time t&ecirc;m apenas "in", "ig", "gh" como texto, sem
+            <strong>aria-label</strong>. Os emojis decorativos (&amp;#9997;&amp;#65039;, &amp;#129309;)
+            n&atilde;o t&ecirc;m <strong>aria-hidden="true"</strong>.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar <code>aria-label</code>, <code>aria-hidden="true"</code> e melhorar textos dos links sociais.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-arrow-up"></span></div>
+            <div class="info">
+              <h4>Back-to-top usa &lt;a href="#"&gt; em vez de &lt;button&gt;</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; index.html:730</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O bot&atilde;o "voltar ao topo" &eacute; um link (<code>&lt;a&gt;</code>) com
+            <code>href="#"</code>. Semanticamente deveria ser um <code>&lt;button&gt;</code>.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Substituir por <code>&lt;button&gt;</code> com <code>aria-label="Voltar ao topo"</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-video-clapper"></span></div>
+            <div class="info">
+              <h4>Canvas animation roda mesmo fora da viewport</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; index.js:72-110 (waveCanvas)</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A fun&ccedil;&atilde;o <strong>waveCanvas()</strong> usa <code>requestAnimationFrame</code>
+            sem verificar se o canvas est&aacute; vis&iacute;vel. O loop de anima&ccedil;&atilde;o
+            continua rodando mesmo quando o usu&aacute;rio rola para outra se&ccedil;&atilde;o.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Usar IntersectionObserver para pausar a anima&ccedil;&atilde;o quando fora da viewport.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-file"></span></div>
+            <div class="info">
+              <h4>PDF em iframe &eacute; fr&aacute;gil e pesado</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; index.html:923</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O PDF de Classificados &eacute; carregado em um <code>&lt;iframe&gt;</code>.
+            Muitos navegadores fazem download do PDF ou exibem &aacute;rea em branco em vez
+            de renderizar inline. Al&eacute;m disso, &eacute; pesado para carregar.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Usar PDF.js para renderiza&ccedil;&atilde;o inline segura, ou abrir em nova aba com
+            <code>target="_blank"</code>.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-file"></span></div>
+            <div class="info">
+              <h4>Arquivo com espa&ccedil;o e caractere especial no nome</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; assets/images/S&iacute;mbolo.logo (2).png</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O arquivo <strong>Simbolo.logo (2).png</strong> cont&eacute;m espa&ccedil;os, par&ecirc;nteses
+            e caractere acentuado. Isso pode causar problemas em servidores Linux e em URLs.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Renomear para <code>simbolo-logo.png</code> (sem espa&ccedil;os, sem acentos).
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-server"></span></div>
+            <div class="info">
+              <h4>serve.ts sem headers de seguran&ccedil;a e compress&atilde;o</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; serve.ts</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O servidor Bun n&atilde;o implementa headers de seguran&ccedil;a (CSP, X-Frame-Options, CORS),
+            nem compress&atilde;o gzip/brotli. Tamb&eacute;m n&atilde;o trata corretamente arquivos vazios.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar middlewares de seguran&ccedil;a e compress&atilde;o ao servidor.
+          </div>
+        </div>
+
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon medium"><span class="ti ti-layout-slider"></span></div>
+            <div class="info">
+              <h4>apresentacao_front.html sem suporte a touch/swipe</h4>
+              <div class="meta"><span class="badge-medium">M&eacute;dio</span> &middot; apresentacao_front.html</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A apresenta&ccedil;&atilde;o de slides n&atilde;o suporta navega&ccedil;&atilde;o por toque
+            (touch/swipe) em dispositivos m&oacute;veis, e o CSS inline impede scroll, podendo
+            travar usu&aacute;rios de teclado.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar suporte touch/swipe e garantir navega&ccedil;&atilde;o por teclado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BAIXOS ============ -->
+  <section id="baixos" class="section-modern">
+    <div class="container">
+      <div class="severity-group">
+        <div class="group-header">
+          <div class="group-icon low">
+            <span class="ti ti-panel"></span>
+          </div>
+          <div>
+            <h3>Baixos &mdash; Manutenibilidade</h3>
+            <span class="count">10 problemas &mdash; Qualidade de c&oacute;digo e boas pr&aacute;ticas</span>
+          </div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-alert"></span></div>
+            <div class="info">
+              <h4>~60+ declara&ccedil;&otilde;es !important no CSS</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; modern.css (se&ccedil;&atilde;o "AJUSTES FINOS")</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O arquivo <code>modern.css</code> cont&eacute;m aproximadamente 60 declara&ccedil;&otilde;es
+            <strong>!important</strong>, especialmente na se&ccedil;&atilde;o "AJUSTES FINOS"
+            (linhas 1424-1916). Isso indica uma guerra de especificidade e dificulta a manuten&ccedil;&atilde;o.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Refatorar o CSS para usar especificidade adequada em vez de <code>!important</code>.
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-layers"></span></div>
+            <div class="info">
+              <h4>.hero-card definido 3 vezes em modern.css</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; modern.css:353, 1485, 1965</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A classe <strong>.hero-card</strong> &eacute; definida tr&ecirc;s vezes ao longo do arquivo,
+            cada vez com <code>!important</code> para sobrepor as anteriores. O mesmo ocorre com
+            <strong>.glass-nav</strong>.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Consolidar todas as defini&ccedil;&otilde;es em &uacute;nico local por componente.
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-trash"></span></div>
+            <div class="info">
+              <h4>Classes CSS n&atilde;o utilizadas</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; modern.css</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            As classes <strong>.hero-mini-card</strong>, <strong>.classes-showcase</strong>,
+            <strong>.hero-actions</strong>, <strong>.cta-panel</strong> e <strong>.light-icon</strong>
+            est&atilde;o definidas no CSS mas n&atilde;o s&atilde;o usadas em nenhum elemento do HTML.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Remover as classes n&atilde;o utilizadas do CSS.
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-server"></span></div>
+            <div class="info">
+              <h4>package.json sem scripts de start/build</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; package.json</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O <code>package.json</code> n&atilde;o possui uma se&ccedil;&atilde;o
+            <strong>"scripts"</strong>. N&atilde;o h&aacute; comandos definidos para iniciar
+            o servidor, build ou desenvolvimento.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar <code>"start": "bun run serve.ts"</code> e <code>"dev": "bun --watch run serve.ts"</code>.
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-book"></span></div>
+            <div class="info">
+              <h4>README.md gen&eacute;rico do Bun</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; README.md</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O README cont&eacute;m apenas o boilerplate padr&atilde;o do Bun. N&atilde;o documenta
+            o projeto real, sua estrutura, depend&ecirc;ncias ou como usar.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Escrever um README espec&iacute;fico do projeto com instru&ccedil;&otilde;es reais.
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-cloud-up"></span></div>
+            <div class="info">
+              <h4>@types/bun usa vers&atilde;o "latest"</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; package.json</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A depend&ecirc;ncia <strong>@types/bun: "latest"</strong> &eacute; fr&aacute;gil.
+            Pode quebrar o projeto a qualquer momento com uma atualiza&ccedil;&atilde;o.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Fixar a vers&atilde;o exata (ex: <code>"@types/bun": "^1.2.0"</code>).
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-image"></span></div>
+            <div class="info">
+              <h4>Extens&otilde;es de imagem misturadas (.jpg e .jpeg)</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; assets/images/</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            Na mesma pasta h&aacute; arquivos <strong>.jpg</strong> e <strong>.jpeg</strong>.
+            Isso &eacute; inconsistente e pode causar links quebrados se a extens&atilde;o errada for referenciada.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Padronizar todas as imagens para <code>.jpg</code> (ou todas para <code>.jpeg</code>).
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-layout-slider"></span></div>
+            <div class="info">
+              <h4>CSS e JS inline em apresentacao_front.html</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; apresentacao_front.html (529 linhas CSS + 30 JS)</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            O arquivo de apresenta&ccedil;&atilde;o tem <strong>529 linhas de CSS</strong> e
+            <strong>30 linhas de JS</strong> tudo inline. N&atilde;o reutiliza os estilos do projeto.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Externalizar CSS e JS em arquivos pr&oacute;prios e referenciar os estilos do projeto.
+          </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-palette"></span></div>
+            <div class="info">
+              <h4>coolvetica.css vs modern.css: .logo-font duplicado</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; coolvetica.css + modern.css:133</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            A classe <strong>.logo-font</strong> est&aacute; definida tanto em
+            <code>coolvetica.css</code> (linha 46) quanto em <code>modern.css</code> (linha 133).
+            A vers&atilde;o do modern.css &eacute; mais robusta (usa fallback <code>var(--display)</code>).
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Manter apenas a defini&ccedil;&atilde;o do <code>modern.css</code> e remover a duplicada.
+          </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="glass-card issue-card">
+          <div class="issue-header">
+            <div class="icon low"><span class="ti ti-tag"></span></div>
+            <div class="info">
+              <h4>Falta de structured data (JSON-LD)</h4>
+              <div class="meta"><span class="badge-low">Baixo</span> &middot; index.html:head</div>
+            </div>
+          </div>
+          <div class="issue-desc">
+            N&atilde;o h&aacute; dados estruturados JSON-LD para a organiza&ccedil;&atilde;o ou
+            programa social. Isso ajuda mecanismos de busca a entenderem o conte&uacute;do.
+          </div>
+          <div class="issue-solution">
+            <span class="ti ti-check-box"></span>
+            Adicionar JSON-LD com nome, descri&ccedil;&atilde;o, logo e URL do programa.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CROSS-FILE ============ -->
+  <section id="cruzados" class="section-modern">
+    <div class="container">
+      <div class="severity-group">
+        <div class="group-header">
+          <div class="group-icon low">
+            <span class="ti ti-layout-column2"></span>
+          </div>
+          <div>
+            <h3>Problemas Cruzados</h3>
+            <span class="count">Problemas que afetam m&uacute;ltiplos arquivos</span>
+          </div>
+        </div>
+
+        <div class="glass-card" style="overflow-x:auto; padding:0;">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Problema</th>
+                <th>Arquivos envolvidos</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="severity-dot critical"></span> select(), selectAll(), isVariableDefined() duplicados</td>
+                <td><code>index.js</code> + <code>helpers.js</code></td>
+                <td>Remover helpers.js</td>
+              </tr>
+              <tr>
+                <td><span class="severity-dot critical"></span> .btn-primary definido 3x com cores diferentes</td>
+                <td><code>style.css</code> + <code>modern.css</code> (2x)</td>
+                <td>Unificar paleta</td>
+              </tr>
+              <tr>
+                <td><span class="severity-dot low"></span> .logo-font definido 2x</td>
+                <td><code>coolvetica.css</code> + <code>modern.css</code></td>
+                <td>Manter apenas modern.css</td>
+              </tr>
+              <tr>
+                <td><span class="severity-dot high"></span> Conflito .btn / .btn-dark entre Bootstrap e custom</td>
+                <td><code>style.css</code> + <code>modern.css</code></td>
+                <td>PurgeCSS ou build custom</td>
+              </tr>
+              <tr>
+                <td><span class="severity-dot critical"></span> JS referencia Jarallax (n&atilde;o carregado)</td>
+                <td><code>index.js</code> (sem lib)</td>
+                <td>Remover c&oacute;digo morto</td>
+              </tr>
+              <tr>
+                <td><span class="severity-dot critical"></span> Preloader usa Animate.css (n&atilde;o carregado)</td>
+                <td><code>index.js</code> (sem lib)</td>
+                <td>CSS nativo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESTATISTICAS ============ -->
+  <section id="estatisticas" class="section-modern">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">Dados</span>
+        <h2>Estat&iacute;sticas do Projeto</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="glass-card" style="overflow-x:auto; padding:0;">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Arquivo / Dado</th>
+              <th>Valor</th>
+              <th>Observa&ccedil;&atilde;o</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Total de arquivos analisados</td>
+              <td><strong>25</strong></td>
+              <td>Excluindo node_modules/</td>
+            </tr>
+            <tr>
+              <td><code>style.css</code></td>
+              <td><strong>21.497</strong> linhas</td>
+              <td>Bootstrap completo, n&atilde;o minificado</td>
+            </tr>
+            <tr>
+              <td><code>modern.css</code> (custom)</td>
+              <td><strong>2.073</strong> linhas</td>
+              <td>Estilos do projeto</td>
+            </tr>
+            <tr>
+              <td><code>index.html</code></td>
+              <td><strong>936</strong> linhas</td>
+              <td>P&aacute;gina principal</td>
+            </tr>
+            <tr>
+              <td><code>apresentacao_front.html</code></td>
+              <td><strong>1.004</strong> linhas</td>
+              <td>529 CSS + 30 JS inline</td>
+            </tr>
+            <tr>
+              <td><code>index.js</code></td>
+              <td><strong>321</strong> linhas</td>
+              <td>JavaScript principal</td>
+            </tr>
+            <tr>
+              <td><code>helpers.js</code></td>
+              <td><strong>12</strong> linhas</td>
+              <td>Nunca carregado (morto)</td>
+            </tr>
+            <tr>
+              <td>Declara&ccedil;&otilde;es !important</td>
+              <td><strong>~60+</strong></td>
+              <td>Maioria em "AJUSTES FINOS"</td>
+            </tr>
+            <tr>
+              <td>Chamadas externas (CDN/API)</td>
+              <td><strong>55+</strong></td>
+              <td>ui-avatars.com + Google Fonts + Themify</td>
+            </tr>
+            <tr>
+              <td>Arquivos mortos</td>
+              <td><strong>2</strong></td>
+              <td><code>index.ts</code>, <code>helpers.js</code></td>
+            </tr>
+            <tr>
+              <td>Classes CSS n&atilde;o usadas</td>
+              <td><strong>5</strong></td>
+              <td>.hero-mini-card, .classes-showcase, .hero-actions, .cta-panel, .light-icon</td>
+            </tr>
+            <tr>
+              <td>Declara&ccedil;&otilde;es duplicadas (CSS)</td>
+              <td><strong>3x</strong> .hero-card, <strong>2x</strong> .glass-nav, <strong>2x</strong> .logo-font</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="report-footer">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="assets/images/logo.png" alt="Barracred Conecta" style="height:28px;width:auto;filter:brightness(0) invert(1);opacity:.8;">
+        <div>
+          <div class="footer-brand">barracred<span>.</span>conecta</div>
+          <span style="font-size:.78rem;">Relat&oacute;rio gerado em 21 de julho de 2026</span>
+        </div>
+      </div>
+      <div style="font-size:.82rem;text-align:right;">
+        An&aacute;lise feita com <a href="#">opencode</a> &bull;
+        <a href="index.html" target="_blank">Ver site original</a> &bull;
+        <a href="#criticos">Topo</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

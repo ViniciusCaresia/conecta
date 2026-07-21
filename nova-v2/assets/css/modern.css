@@ -345,7 +345,7 @@ a:focus-visible, button:focus-visible {
 .modern-feature-card,
 .modern-team-card,
 .glass-footer-card {
-  border: 1px solid var(--bc-border);
+  border: 2px solid var(--bc-border);
   box-shadow: var(--bc-shadow);
   backdrop-filter: blur(20px);
 }
