@@ -181,6 +181,10 @@ a:focus-visible, button:focus-visible {
 .nav-cta .btn-grad:hover,
 .nav-cta .btn-grad:focus {
   box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .btn-glass {
@@ -269,8 +273,19 @@ a:focus-visible, button:focus-visible {
   color: var(--bc-dark) !important;
 }
 
-.glass-nav.scrolled .navbar-toggler-icon {
+.glass-nav.scrolled .toggler-icon {
   filter: invert(1);
+}
+
+.glass-nav .navbar-toggler {
+  background: transparent;
+  border: none;
+  padding: .25rem;
+  line-height: 1;
+}
+
+.glass-nav.scrolled .navbar-toggler {
+  background: transparent;
 }
 
 .navbar-brand-item {
@@ -414,13 +429,17 @@ a:focus-visible, button:focus-visible {
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
-  margin-bottom: .85rem;
-  color: rgba(255,255,255,.78);
+  gap: .65rem;
+  margin-bottom: 1rem;
+  color: var(--bc-primary-dark);
   text-transform: uppercase;
-  font-size: .75rem;
-  font-weight: 800;
-  letter-spacing: .12em;
+  font-size: .92rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  background: rgba(59, 189, 128, .1);
+  padding: .4rem 1rem .4rem .7rem;
+  border-radius: 999px;
+  border-left: 4px solid var(--bc-primary);
 }
 
 .eyebrow::before {
@@ -680,12 +699,13 @@ a:focus-visible, button:focus-visible {
   aspect-ratio: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: var(--bc-radius-lg);
   background: rgba(255,255,255,.72);
-  border: 1px solid var(--bc-border-soft);
+  border: 2px solid var(--bc-border-soft);
+  box-shadow: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   overflow: hidden;
@@ -708,6 +728,7 @@ a:focus-visible, button:focus-visible {
   transform-origin: left;
   transition: transform .5s cubic-bezier(.22,1,.36,1);
   z-index: 2;
+  display: none;
 }
 
 .modern-feature-card::after {
@@ -734,8 +755,6 @@ a:focus-visible, button:focus-visible {
     inset 0 1px 0 rgba(255,255,255,.1);
 }
 
-.modern-feature-card:hover::before { transform: scaleX(1); }
-
 .modern-feature-card:hover::after {
   transform: scale(1.6);
   opacity: .35;
@@ -748,23 +767,51 @@ a:focus-visible, button:focus-visible {
 .modern-feature-card .feature-box-icon {
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
+  margin-top: .5rem;
   margin-bottom: 1.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px;
   border-radius: 18px;
   font-size: 1.75rem;
-  background: linear-gradient(135deg, rgba(76,189,137,.14), rgba(15,122,86,.08));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+  background: #fff;
+  border: 2px solid var(--bc-primary);
+  box-shadow: 0 4px 14px rgba(59,189,128,.15);
+  overflow: hidden;
   transition:
     background .45s ease,
     box-shadow .45s ease,
     transform .4s cubic-bezier(.22,1,.36,1);
 }
 
+.modern-feature-card .feature-box-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: var(--bc-primary-dark);
+  stroke: var(--bc-primary-dark);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.modern-feature-card .feature-box-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .modern-feature-card:hover .feature-box-icon {
-  background: rgba(255,255,255,.14);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 4px 16px rgba(0,0,0,.12);
+  background: var(--bc-primary-tint);
+  border-color: var(--bc-primary-bright);
+  box-shadow: 0 6px 20px rgba(59,189,128,.25);
   transform: translateY(-3px) scale(1.05);
+}
+
+.modern-feature-card:hover .feature-box-icon svg {
+  stroke: #fff;
+  fill: #fff;
 }
 
 .modern-feature-card .feature-box-title {
@@ -772,6 +819,7 @@ a:focus-visible, button:focus-visible {
   margin-bottom: 0;
   color: var(--bc-dark);
   font-size: 1.18rem;
+  text-align: center;
   font-weight: 850;
   line-height: 1.25;
   transition: color .4s ease, margin-bottom .4s ease;
@@ -883,14 +931,17 @@ a:focus-visible, button:focus-visible {
 
 /* ============ TINY SLIDER CONTROLS ============ */
 .tns-controls [data-controls] {
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(76,189,137,.25);
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(76,189,137,.35);
   border-radius: 50%;
   color: var(--bc-primary-dark);
-  background: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.92);
   box-shadow: var(--bc-shadow);
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   font-weight: 900;
   margin-top: 1px;
 }
@@ -960,18 +1011,26 @@ a:focus-visible, button:focus-visible {
 
 .project-metrics {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: .6rem;
   margin: 1rem 0;
-  flex-wrap: wrap;
 }
 
 .project-metrics span {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
   padding: .6rem 1rem;
   border-radius: 999px;
   background: rgba(76,189,137,.1);
   color: var(--bc-primary-dark);
   font-size: .85rem;
   font-weight: 600;
+}
+
+.project-metrics span .bi {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .project-list {
@@ -1835,12 +1894,10 @@ body::before { opacity: .5; }
 }
 
 @media (min-width: 1200px) {
-  .glass-nav .navbar-toggler .navbar-toggler-icon {
+  .glass-nav .navbar-toggler .toggler-icon {
+    font-size: 1.25rem;
+    color: #fff;
     transition: transform .3s ease;
-  }
-
-  .glass-nav.navbar-minimized .navbar-toggler .navbar-toggler-icon {
-    transform: rotate(90deg);
   }
 
   .glass-nav.navbar-minimized .navbar-collapse,

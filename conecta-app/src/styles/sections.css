@@ -22,7 +22,7 @@
   align-items: center; justify-content: center;
   margin-bottom: 14px; color: var(--green);
 }
-.pillar h4 { font-size: 16px; color: var(--green-dark); margin-bottom: 6px; }
+.pillar h4 { font-size: 16px; color: var(--green-dark); font-weight: 800; margin-bottom: 6px; }
 .pillar p { font-size: 14px; color: var(--ink-soft); }
 
 /* ============ PROPÓSITO ============ */
@@ -46,7 +46,7 @@
   border: none;
   border-radius: var(--radius);
 }
-.purpose h2 { font-size: clamp(28px, 3.4vw, 38px); color: var(--green-dark); line-height: 1.14; }
+.purpose h2 { font-size: clamp(28px, 3.4vw, 38px); color: var(--green-dark); font-weight: 800; line-height: 1.14; }
 .purpose p.lead { margin-top: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
 .purpose-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
 .purpose-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; color: var(--ink-soft); }
@@ -75,7 +75,7 @@
 .stop .disc span { font-size: 9px; text-transform: uppercase; letter-spacing: .05em; opacity: .75; }
 .stop .disc b { font-size: 18px; }
 .stop-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; min-height: 150px; }
-.stop-card h5 { font-size: 15.5px; color: var(--green-dark); margin-bottom: 8px; }
+.stop-card h5 { font-size: 15.5px; color: var(--green-dark); font-weight: 800; margin-bottom: 8px; }
 .stop-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
 .trilha-note { margin-top: 26px; font-size: 12.5px; color: var(--ink-soft); font-family: var(--mono); }
 
@@ -139,7 +139,7 @@
   padding: 4px 10px; border-radius: 100px;
   display: inline-block; margin-bottom: 16px;
 }
-.fr-card h3 { font-size: 19px; color: var(--green-dark); margin-bottom: 10px; }
+.fr-card h3 { font-size: 19px; color: var(--green-dark); font-weight: 800; margin-bottom: 10px; }
 .fr-card p { font-size: 14px; color: var(--ink-soft); }
 
 /* ============ PROJETOS ============ */
@@ -179,7 +179,7 @@
   text-transform: uppercase; color: var(--coral-deep);
   margin-bottom: 8px;
 }
-.proj-card-body h3 { font-size: 20px; color: var(--green-dark); margin-bottom: 10px; }
+.proj-card-body h3 { font-size: 20px; color: var(--green-dark); font-weight: 800; margin-bottom: 10px; }
 .proj-card-body p { font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
 .proj-results { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; }
 .proj-results span { font-family: var(--mono); font-size: 12px; color: var(--green); }
@@ -222,7 +222,7 @@
   background: var(--bg-soft);
 }
 .eq-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.eq-card h4 { font-size: 19px; color: var(--green-dark); margin-top: 4px; }
+.eq-card h4 { font-size: 19px; color: var(--green-dark); font-weight: 800; margin-top: 4px; }
 .eq-card .eq-role {
   display: inline-block;
   font-family: var(--mono);
@@ -278,7 +278,7 @@
 .partner-list li { display: flex; gap: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
 .partner-list li:first-child { border-top: none; padding-top: 0; }
 .partner-list .pn { font-family: var(--mono); color: var(--coral-deep); font-size: 13px; width: 24px; flex: none; }
-.partner-list h5 { font-size: 15.5px; color: var(--green-dark); margin-bottom: 3px; }
+.partner-list h5 { font-size: 15.5px; color: var(--green-dark); font-weight: 800; margin-bottom: 3px; }
 .partner-list p { font-size: 13.5px; color: var(--ink-soft); }
 
 /* ============ CTA FINAL ============ */

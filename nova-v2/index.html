@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/modern.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/themify-icons@0.1.2/css/themify-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -37,7 +38,7 @@
           <img class="navbar-brand-item" src="assets/images/logo.png" alt="Logo Barracred Conecta">
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Abrir menu">
-          <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-fullscreen-exit toggler-icon"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav navbar-nav-scroll ms-auto align-items-lg-center">
@@ -94,7 +95,7 @@
     <section class="section-modern pt-md-8" id="about">
       <div class="container z-in">
         <div class="section-heading text-center mx-auto">
-          <span class="eyebrow text-grad">Quem Somos</span>
+          <span class="eyebrow">Quem Somos</span>
           <h2>Seja bem-vindo ao Barracred Conecta</h2>
         </div>
         <div class="row align-items-stretch g-4">
@@ -131,7 +132,7 @@
           </div>
           <div class="col-lg-7">
             <div class="content-card ps-lg-3">
-              <span class="eyebrow text-grad">Sobre o programa</span>
+              <span class="eyebrow">Sobre o programa</span>
               <h2>O que é o Barracred Conecta?</h2>
               <p>O Barracred Conecta é muito mais do que uma capacitação. É uma porta de entrada para um novo mundo. Um programa pensado para preparar jovens para os desafios de hoje e as oportunidades de amanhã, com uma formação que une técnica, propósito e valores.</p>
               <p>Com aulas de Tecnologia da Informação, Inglês Técnico, Educação Financeira e Desenvolvimento de Habilidades Pessoais e Profissionais, buscamos formar jovens confiantes, preparados e conscientes, capazes de atuar com protagonismo na vida e no trabalho.</p>
@@ -155,7 +156,7 @@
     <section class="section-modern trilha-section" id="trilha">
       <div class="container">
         <div class="section-heading text-center mx-auto">
-          <span class="eyebrow text-grad">A Jornada</span>
+          <span class="eyebrow">A Jornada</span>
           <h2>Uma trilha de 10 meses, em quatro grandes movimentos</h2>
           <p>O programa caminha em blocos que se somam - cada etapa apoiada na anterior, até chegar na conexão com o mercado de trabalho.</p>
         </div>
@@ -192,7 +193,6 @@
             </div>
           </div>
         </div>
-        <p class="trilha-note">* Estrutura ilustrativa da jornada - os blocos podem se ajustar conforme a turma.</p>
       </div>
 
       <div class="container">
@@ -202,65 +202,83 @@
         <div class="row g-4 mt-2">
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128100;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Habilidades Pessoais e Profissionais.png" alt="Habilidades Pessoais e Profissionais">
+              </div>
               <h3 class="feature-box-title">Habilidades Pessoais e Profissionais</h3>
-              <p class="feature-box-desc">Trabalhamos autoconhecimento, empatia, habilidades socioemocionais e competências profissionais para formar jovens autônomos e preparados para o mercado de trabalho.</p>
+              <p class="feature-box-desc">Desenvolvemos jovens para o mercado de trabalho por meio de habilidades socioemocionais e profissionais.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128187;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Tecnologia da Informação.png" alt="Tecnologia da Informação">
+              </div>
               <h3 class="feature-box-title">Tecnologia da Informação</h3>
-              <p class="feature-box-desc">Os alunos aprendem desde sistemas operacionais e hardware até programação, banco de dados e desenvolvimento (front-end, back-end e mobile), preparando-se para o mercado de TI.</p>
+              <p class="feature-box-desc">Formamos profissionais de TI com conhecimentos em sistemas, programação e banco de dados.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#127760;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Inglês Técnico.png" alt="Inglês Técnico">
+              </div>
               <h3 class="feature-box-title">Inglês Técnico</h3>
-              <p class="feature-box-desc">O inglês é uma ferramenta essencial para o mercado de trabalho, nesse ponto focamos no vocabulário e expressões do mundo corporativo para uma comunicação clara e eficiente.</p>
+              <p class="feature-box-desc">Desenvolvemos o inglês para o ambiente corporativo, com foco na comunicação profissional.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128200;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Educação Financeira.png" alt="Educação Financeira">
+              </div>
               <h3 class="feature-box-title">Educação Financeira</h3>
-              <p class="feature-box-desc">Os jovens aprendem a planejar e controlar suas finanças, definindo metas realistas. Incentivamos a gestão consciente de recursos para criar hábitos saudáveis.</p>
+              <p class="feature-box-desc">Ensinamos educação financeira para desenvolver hábitos conscientes e planejamento.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#127919;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Oficinas para o Mercado.png" alt="Oficinas para o Mercado">
+              </div>
               <h3 class="feature-box-title">Oficinas para o Mercado</h3>
-              <p class="feature-box-desc">Nossas oficinas ensinam desde elaboração de currículos até simulações de entrevistas, com dicas práticas de especialistas para ingressar no mundo profissional.</p>
+              <p class="feature-box-desc">Capacitamos os jovens para conquistar oportunidades no mercado profissional.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#129309;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Cooperativismo na Prática.jpeg" alt="Cooperativismo na Prática">
+              </div>
               <h3 class="feature-box-title">Cooperativismo na Prática</h3>
-              <p class="feature-box-desc">Os jovens aprendem os princípios do cooperativismo, o papel das cooperativas e vivenciam na prática o trabalho em modelo colaborativo.</p>
+              <p class="feature-box-desc">Apresentamos os princípios do cooperativismo e a importância da colaboração.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128172;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Palestras Imersivas.png" alt="Palestras Imersivas">
+              </div>
               <h3 class="feature-box-title">Palestras Imersivas</h3>
-              <p class="feature-box-desc">Profissionais de diversas áreas compartilham experiências e desafios do mercado, estimulando reflexão e inspirando os jovens a serem protagonistas.</p>
+              <p class="feature-box-desc">Profissionais compartilham experiências para inspirar e desenvolver futuros talentos.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128161;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Feiras e Eventos.jpeg" alt="Feiras e Eventos">
+              </div>
               <h3 class="feature-box-title">Feiras e Eventos</h3>
-              <p class="feature-box-desc">Visitas técnicas, hackathons e eventos culturais proporcionam experiências práticas, networking e ampliação de perspectivas para o futuro profissional.</p>
+              <p class="feature-box-desc">Promovemos vivências, networking e aprendizado para o desenvolvimento profissional.</p>
             </div>
           </div>
           <div class="col-sm-6 col-lg-4">
             <div class="feature-box h-100 icon-grad modern-feature-card">
-              <div class="feature-box-icon">&#128188;</div>
+              <div class="feature-box-icon">
+                <img src="assets/images/Estágios e Oportunidades.png" alt="Estágios e Oportunidades">
+              </div>
               <h3 class="feature-box-title">Estágios e Oportunidades</h3>
-              <p class="feature-box-desc">Facilitamos oportunidades reais de trabalho e estágios através de parcerias com empresas, ajudando os jovens a aplicar suas habilidades e dar o primeiro passo.</p>
+              <p class="feature-box-desc">Facilitamos o ingresso no mercado de trabalho com oportunidades reais.</p>
             </div>
           </div>
         </div>
@@ -271,7 +289,7 @@
     <section class="section-modern projects-section pt-md-8" id="projects">
       <div class="container">
         <div class="section-heading text-center mx-auto">
-          <span class="eyebrow text-grad">Projetos</span>
+          <span class="eyebrow">Projetos</span>
           <h2>Projetos que conectam aprendizado, comunidade e transformação</h2>
           <p>Além das aulas, os alunos vivenciam experiências práticas que ampliam a formação humana, fortalecem vínculos com a comunidade e transformam conhecimento em impacto social.</p>
         </div>
@@ -293,6 +311,10 @@
               <div class="project-content">
                 <h3>Conectando Gerações</h3>
                 <p>Uma proposta socioeducativa que aproxima os alunos do Barracred Conecta dos idosos residentes em lares de amparo à velhice de Barra Bonita, promovendo convivência, acolhimento, troca de experiências e respeito entre diferentes gerações.</p>
+                <div class="project-metrics">
+                  <span><i class="bi bi-geo-alt"></i> Lar Bombonato</span>
+                  <span><i class="bi bi-geo-alt"></i> Lar São Vicente</span>
+                </div>
                 <ul class="project-list">
                   <li>Inclusão social e troca de experiências.</li>
                   <li>Fortalecimento de vínculos, valores e cidadania.</li>
@@ -340,7 +362,7 @@
     <section class="section-modern gallery-section pt-md-8" id="galeria">
       <div class="container-fluid">
         <div class="section-heading text-center mx-auto">
-          <span class="eyebrow text-grad">Galeria</span>
+          <span class="eyebrow">Galeria</span>
           <h2>Memórias do programa</h2>
           <p>Momentos que marcam a jornada dos nossos alunos dentro e fora da sala de aula.</p>
         </div>
@@ -364,7 +386,7 @@
       <div class="container">
         <div class="row align-items-center g-4 mb-5">
           <div class="col-lg-6">
-            <span class="eyebrow text-grad">Equipe</span>
+            <span class="eyebrow">Equipe</span>
             <h2>Quem está com você nessa?</h2>
             <p>Construímos uma equipe sólida, capaz de oferecer aos jovens alunos do Programa, oportunidades para desenvolver suas habilidades e adquirir as competências necessárias ao mundo atual.</p>
             <p>Nosso time é composto de profissionais especializados, capazes e dedicados à formação de jovens, desde o básico comportamental até conceitos avançados de programação e tecnologia.</p>

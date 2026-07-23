@@ -313,16 +313,24 @@ function initReveal() {
 function navbarToggle() {
   const toggler = document.querySelector('.glass-nav .navbar-toggler');
   const glassNav = document.querySelector('.glass-nav');
+  const togglerIcon = toggler ? toggler.querySelector('.toggler-icon') : null;
   if (!toggler || !glassNav) return;
 
-  toggler.addEventListener('click', function () {
+  toggler.addEventListener('click', function (e) {
     if (window.innerWidth >= 1200) {
+      e.stopPropagation();
+      e.preventDefault();
       glassNav.classList.toggle('navbar-minimized');
       const isMinimized = glassNav.classList.contains('navbar-minimized');
       toggler.setAttribute('aria-expanded', String(!isMinimized));
       toggler.setAttribute('aria-label', isMinimized ? 'Expandir menu' : 'Recolher menu');
+      if (togglerIcon) {
+        togglerIcon.className = isMinimized
+          ? 'bi bi-fullscreen toggler-icon'
+          : 'bi bi-fullscreen-exit toggler-icon';
+      }
     }
-  });
+  }, true);
 }
 
 // ============ INIT ============
