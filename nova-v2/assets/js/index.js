@@ -309,6 +309,22 @@ function initReveal() {
   targets.forEach((el) => observer.observe(el));
 }
 
+// ============ NAVBAR TOGGLE (desktop minimize) ============
+function navbarToggle() {
+  const toggler = document.querySelector('.glass-nav .navbar-toggler');
+  const glassNav = document.querySelector('.glass-nav');
+  if (!toggler || !glassNav) return;
+
+  toggler.addEventListener('click', function () {
+    if (window.innerWidth >= 1200) {
+      glassNav.classList.toggle('navbar-minimized');
+      const isMinimized = glassNav.classList.contains('navbar-minimized');
+      toggler.setAttribute('aria-expanded', String(!isMinimized));
+      toggler.setAttribute('aria-label', isMinimized ? 'Expandir menu' : 'Recolher menu');
+    }
+  });
+}
+
 // ============ INIT ============
 document.addEventListener("DOMContentLoaded", function () {
   preLoader();
@@ -318,4 +334,5 @@ document.addEventListener("DOMContentLoaded", function () {
   tinySlider();
   turmasFilter();
   initReveal();
+  navbarToggle();
 });
