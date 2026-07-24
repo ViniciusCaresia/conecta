@@ -203,6 +203,15 @@ function tinySlider() {
         1200: { items: Number(sliderItemsXl) }
       }
     });
+
+    if (slider.classList.contains('team')) {
+      slider.closest('.team-carousel-wrap').addEventListener('mouseenter', function () {
+        tnsSlider.pause();
+      });
+      slider.closest('.team-carousel-wrap').addEventListener('mouseleave', function () {
+        tnsSlider.play();
+      });
+    }
   });
 }
 
@@ -311,24 +320,15 @@ function initReveal() {
 
 // ============ NAVBAR TOGGLE (desktop minimize) ============
 function navbarToggle() {
-  const toggler = document.querySelector('.glass-nav .navbar-toggler');
+  const brand = document.querySelector('.glass-nav .navbar-brand');
   const glassNav = document.querySelector('.glass-nav');
-  const togglerIcon = toggler ? toggler.querySelector('.toggler-icon') : null;
-  if (!toggler || !glassNav) return;
+  if (!glassNav || !brand) return;
 
-  toggler.addEventListener('click', function (e) {
+  brand.addEventListener('click', function (e) {
     if (window.innerWidth >= 1200) {
       e.stopPropagation();
       e.preventDefault();
       glassNav.classList.toggle('navbar-minimized');
-      const isMinimized = glassNav.classList.contains('navbar-minimized');
-      toggler.setAttribute('aria-expanded', String(!isMinimized));
-      toggler.setAttribute('aria-label', isMinimized ? 'Expandir menu' : 'Recolher menu');
-      if (togglerIcon) {
-        togglerIcon.className = isMinimized
-          ? 'bi bi-fullscreen toggler-icon'
-          : 'bi bi-fullscreen-exit toggler-icon';
-      }
     }
   }, true);
 }

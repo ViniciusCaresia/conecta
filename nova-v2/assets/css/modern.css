@@ -274,7 +274,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .glass-nav.scrolled .toggler-icon {
-  filter: invert(1);
+  color: var(--bc-primary-dark) !important;
 }
 
 .glass-nav .navbar-toggler {
@@ -291,6 +291,13 @@ a:focus-visible, button:focus-visible {
 .navbar-brand-item {
   max-height: 42px;
   width: auto;
+  transition: transform .3s ease, filter .3s ease;
+}
+
+.navbar-brand:hover .navbar-brand-item {
+  transform: scale(1.08);
+  filter: drop-shadow(0 2px 8px rgba(59,189,128,.35));
+  cursor: pointer;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -701,7 +708,7 @@ a:focus-visible, button:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: .8rem;
   border-radius: var(--bc-radius-lg);
   background: rgba(255,255,255,.72);
   border: 2px solid var(--bc-border-soft);
@@ -767,15 +774,15 @@ a:focus-visible, button:focus-visible {
 .modern-feature-card .feature-box-icon {
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 72px;
+  width: 84px;
+  height: 84px;
   margin-top: .5rem;
   margin-bottom: 1.2rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 6px;
-  border-radius: 18px;
-  font-size: 1.75rem;
+  padding: 8px;
+  border-radius: 20px;
+  font-size: 2rem;
   background: #fff;
   border: 2px solid var(--bc-primary);
   box-shadow: 0 4px 14px rgba(59,189,128,.15);
@@ -834,6 +841,7 @@ a:focus-visible, button:focus-visible {
   color: rgba(255,255,255,.82);
   font-size: .98rem;
   line-height: 1.6;
+  text-align: center;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -904,11 +912,19 @@ a:focus-visible, button:focus-visible {
 .modern-team-card .team-desc h5 { margin-bottom: .2rem; font-weight: 850; }
 .modern-team-card .team-desc span { color: var(--bc-muted); font-weight: 600; }
 
+.team-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+}
+
+.team-name-row h5 { margin-bottom: 0; }
+
 .modern-team-card .social-icons {
   display: flex;
-  justify-content: center;
-  gap: .45rem;
-  margin: .8rem 0 0;
+  gap: .25rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -916,18 +932,13 @@ a:focus-visible, button:focus-visible {
 .modern-team-card .social-icons a {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: .72rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--bc-primary), var(--bc-primary-dark));
-  box-shadow: 0 10px 20px rgba(76,189,137,.25);
+  width: 22px;
+  height: 22px;
+  color: var(--bc-primary);
+  font-size: 1.15rem;
 }
 
-.modern-team-card .social-icons a:hover { transform: translateY(-2px); }
+.modern-team-card .social-icons a:hover { color: var(--bc-primary-dark); transform: translateY(-2px); }
 
 /* ============ TINY SLIDER CONTROLS ============ */
 .tns-controls [data-controls] {
@@ -943,7 +954,7 @@ a:focus-visible, button:focus-visible {
   box-shadow: var(--bc-shadow);
   font-size: 2.2rem;
   font-weight: 900;
-  margin-top: 1px;
+  margin-top: -55px;
 }
 
 .tns-controls [data-controls]:hover {
@@ -1091,8 +1102,134 @@ a:focus-visible, button:focus-visible {
   to { transform: translateX(-50%); }
 }
 
+/* ============ ABOUT ============ */
+.about-section {
+  background: linear-gradient(to bottom, transparent 0%, var(--bc-surface) 15%, var(--bc-surface) 100%);
+}
+
+/* ============ PROGRAM ============ */
+.program-section {
+  background: linear-gradient(to bottom, var(--bc-surface) 0%, var(--bc-surface) 70%, transparent 100%);
+}
+
 /* ============ TRILHA ============ */
-.trilha-section { background: var(--bc-surface); }
+.trilha-section {
+  background: linear-gradient(to bottom, transparent 0%, var(--bc-surface) 15%, var(--bc-surface) 70%, transparent 100%);
+  position: relative;
+}
+
+.flip-card {
+  perspective: 1000px;
+  height: 320px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--bc-radius-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  background: var(--bc-surface);
+  border: 1px solid var(--bc-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 16px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+  color: #fff;
+}
+
+.flip-card-info h5 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.flip-card-info span {
+  font-size: .85rem;
+  opacity: .85;
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, var(--bc-primary), var(--bc-primary-dark));
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.flip-card-back i {
+  font-size: 2.5rem;
+  opacity: .3;
+  margin-bottom: .5rem;
+}
+
+.flip-card-back p {
+  font-size: .95rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.flip-back-name {
+  font-size: .85rem;
+  font-weight: 700;
+  opacity: .85;
+  margin-top: auto;
+}
+
+.flip-row {
+  position: relative;
+}
+
+.flip-row::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15,122,86,.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
 .trilha-track { position: relative; margin-top: 70px; }
 .trilha-track .rail {
@@ -1177,9 +1314,21 @@ a:focus-visible, button:focus-visible {
 
 .gallery-track:hover { animation-play-state: paused; }
 
+.gallery-track-reverse {
+  margin-top: 24px;
+  animation: gallery-scroll-reverse 40s linear infinite;
+}
+
+.gallery-track-reverse:hover { animation-play-state: paused; }
+
 @keyframes gallery-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@keyframes gallery-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 .gallery-cell {
@@ -2143,11 +2292,20 @@ body::before { opacity: .5; }
 .stop-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(7, 64, 46, .11); }
 
 /* ============ TEAM ============ */
-.modern-team-card .team-avatar {
-  border-bottom: 4px solid transparent;
-  transition: border-color .35s ease;
+.team-overlay .team-item .team-avatar:before,
+.team-overlay .team-item:hover .team-avatar:before {
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
-.modern-team-card:hover .team-avatar { border-color: var(--bc-primary); }
+
+.modern-team-card:hover .team-avatar img {
+  transform: scale(1.05);
+}
+
+.modern-team-card .team-avatar img {
+  transition: transform .4s ease;
+}
+
 .modern-team-card .team-desc h5 { color: var(--bc-dark); }
 
 /* ============ PROJECT CARDS ============ */
@@ -2155,6 +2313,28 @@ body::before { opacity: .5; }
 .project-badge {
   background: linear-gradient(135deg, var(--bc-primary), var(--bc-primary-dark));
   border-color: rgba(255,255,255,.35);
+}
+
+.project-carousel-media {
+  aspect-ratio: 16 / 9;
+}
+
+.project-carousel-media .project-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--bc-surface);
+}
+
+.project-card .tns-controls [data-controls] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.project-card:hover .tns-controls [data-controls] {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ============ NAVBAR BRAND ============ */
