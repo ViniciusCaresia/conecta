@@ -252,8 +252,8 @@ a:focus-visible, button:focus-visible {
 }
 
 .glass-nav {
-  width: min(1180px, calc(100vw - 28px));
-  max-width: min(1180px, calc(100vw - 28px));
+  width: min(1050px, calc(100vw - 28px));
+  max-width: min(1050px, calc(100vw - 28px));
   margin: 0 auto;
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 999px;
@@ -589,6 +589,28 @@ a:focus-visible, button:focus-visible {
   font-weight: 900;
   font-size: clamp(1.7rem, 3.5vw, 2.6rem);
   line-height: .98;
+}
+
+.mission-card-carousel {
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+
+.mission-card-carousel::before,
+.mission-card-carousel::after {
+  display: none;
+}
+
+.mission-card-carousel .mission-logo {
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.2));
+}
 }
 
 /* ============ PHOTO STRIP ============ */
@@ -983,7 +1005,15 @@ a:focus-visible, button:focus-visible {
   background: rgba(76,189,137,.12);
 }
 
+.cta-icon img {
+  mix-blend-mode: multiply;
+}
+
 .light-icon { background: rgba(255,255,255,.15); }
+
+.light-icon img {
+  mix-blend-mode: multiply;
+}
 
 /* ============ PROJECT CARDS ============ */
 .project-card {
@@ -1205,6 +1235,7 @@ a:focus-visible, button:focus-visible {
   line-height: 1.6;
   font-style: italic;
   margin-bottom: 1rem;
+  color: #fff;
 }
 
 .flip-back-name {
@@ -1212,6 +1243,7 @@ a:focus-visible, button:focus-visible {
   font-weight: 700;
   opacity: .85;
   margin-top: auto;
+  color: #fff;
 }
 
 .flip-row {
@@ -1577,8 +1609,29 @@ a:focus-visible, button:focus-visible {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font-size: 1.4rem;
   text-decoration: none;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--bc-primary), #04c67a);
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(15, 122, 86, .35);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.back-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(15, 122, 86, .45);
+  color: #fff;
+}
+
+.back-top i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 /* ============ RESPONSIVE ============ */
@@ -1657,6 +1710,7 @@ body::before { opacity: .5; }
 
 .navbar-brand-item {
   max-height: 38px;
+  width: auto;
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.32));
 }
 
@@ -1763,18 +1817,9 @@ body::before { opacity: .5; }
 .glass-footer-card { box-shadow: none; }
 
 .back-top {
-  width: 52px !important;
-  height: 52px !important;
   padding: 0 !important;
   line-height: 1 !important;
-  border-radius: 50% !important;
-  font-size: 2rem !important;
-  font-weight: 900;
-  color: #fff !important;
-  box-shadow: 0 14px 30px rgba(15, 122, 86, .34);
 }
-
-.back-top:hover { color: #fff !important; }
 
 .team-carousel-wrap { padding: 0 0 .5rem; }
 
