@@ -333,6 +333,14 @@ function navbarToggle() {
   }, true);
 }
 
+// ============ GALLERY INFINITE CLONE ============
+function galleryClone() {
+  document.querySelectorAll('.gallery-track').forEach(function(track) {
+    var items = track.innerHTML;
+    track.innerHTML = items + items;
+  });
+}
+
 // ============ INIT ============
 document.addEventListener("DOMContentLoaded", function () {
   preLoader();
@@ -343,4 +351,5 @@ document.addEventListener("DOMContentLoaded", function () {
   turmasFilter();
   initReveal();
   navbarToggle();
+  galleryClone();
 });

@@ -542,9 +542,9 @@ a:focus-visible, button:focus-visible {
 .mission-card {
   position: relative;
   display: flex;
-  min-height: 330px;
+  min-height: auto;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   padding: clamp(1.8rem, 4vw, 3rem);
   border-radius: var(--bc-radius-xl);
   overflow: hidden;
@@ -575,18 +575,19 @@ a:focus-visible, button:focus-visible {
   position: relative;
   z-index: 1;
   display: block;
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.70);
   margin-bottom: 1rem;
   line-height: 1.75;
+  font-size: .88rem;
 }
 
 .mission-card h3 {
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: 0 0 .8rem;
   color: #fff;
   font-weight: 900;
-  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
   line-height: .98;
 }
 
