@@ -2434,3 +2434,111 @@ body::before { opacity: .5; }
 .glass-card, .content-card, .glass-split {
   border: 1px solid var(--bc-border-soft);
 }
+
+/* =========================================================
+   BARRACRED CONECTA v2 — HOTFIXES RESPONSIVO
+   Corrige imagens e cards quebrados em celulares/tablets
+   ========================================================= */
+
+/* ---- MISSION CARD (carrossel de fotos "Quem Somos") ----
+   No desktop o card ganha altura pelo h-100/flex (como sempre).
+   No mobile as colunas empilham e ele colapsa, escondendo a
+   foto "barracred frente" — por isso a altura mínima só abaixo
+   de 992px. */
+@media (max-width: 991.98px) {
+  .mission-card-carousel { min-height: 400px; }
+}
+
+@media (max-width: 575.98px) {
+  .mission-card-carousel {
+    min-height: 340px;
+  }
+  .mission-card-carousel .mission-slide { padding: 1.25rem; }
+  .mission-card-carousel .mission-logo { max-height: 250px; }
+}
+
+/* ---- FEATURE CARDS ("O que você vai aprender?") ----
+   No celular não existe hover: a descrição nunca aparecia e o
+   aspect-ratio 1:1 com overflow:hidden cortava o conteúdo. */
+@media (max-width: 767.98px) {
+  .modern-feature-card {
+    aspect-ratio: auto;
+    min-height: 230px;
+    justify-content: flex-start;
+    padding: 1.35rem 1.1rem;
+  }
+
+  .modern-feature-card .feature-box-icon {
+    width: 62px;
+    height: 62px;
+    margin-top: .1rem;
+    margin-bottom: .95rem;
+    border-radius: 16px;
+  }
+
+  .modern-feature-card .feature-box-title { font-size: 1.05rem; }
+
+  .modern-feature-card .feature-box-desc {
+    max-height: 220px;
+    opacity: 1;
+    margin-top: .55rem;
+    padding-top: 0;
+    font-size: .92rem;
+    color: var(--bc-muted);
+  }
+
+  .modern-feature-card:hover,
+  .modern-feature-card:focus {
+    transform: none;
+    background: rgba(255,255,255,.72);
+    border-color: var(--bc-border-soft);
+    box-shadow: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
+  }
+
+  .modern-feature-card:hover .feature-box-icon,
+  .modern-feature-card:focus .feature-box-icon {
+    background: #fff;
+    border-color: var(--bc-primary);
+    transform: none;
+  }
+
+  .modern-feature-card:hover .feature-box-title,
+  .modern-feature-card:focus .feature-box-title {
+    color: var(--bc-dark);
+    margin-bottom: 0;
+  }
+
+  .modern-feature-card:hover .feature-box-desc,
+  .modern-feature-card:focus .feature-box-desc {
+    color: var(--bc-muted);
+    max-height: 220px;
+    opacity: 1;
+    margin-top: .55rem;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .modern-feature-card { padding: 1.1rem .85rem; }
+  .modern-feature-card .feature-box-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: .8rem;
+  }
+  .modern-feature-card .feature-box-title { font-size: .98rem; }
+  .modern-feature-card .feature-box-desc { font-size: .87rem; }
+}
+
+/* ---- FLIP CARDS (depoimentos da Jornada) ---- */
+@media (max-width: 575.98px) {
+  .flip-card { height: 350px; }
+  .flip-card-back { padding: 1.5rem 1.1rem; }
+  .flip-card-back p { font-size: .88rem; }
+}
+
+/* ---- PROJECT CARDS ---- */
+.project-metrics span { flex-wrap: wrap; text-align: left; }
+
+@media (max-width: 575.98px) {
+  .project-content { padding: 1.35rem 1.1rem; }
+  .project-content h3 { font-size: 1.18rem; }
+}
