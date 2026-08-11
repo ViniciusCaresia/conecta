@@ -144,7 +144,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s1-logo img{height:46px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.4))}
 .s1-hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:10px}
 .s1-eyebrow{align-self:flex-start;margin-bottom:22px}
-.s1-title{color:#fff;font-size:92px;line-height:.95;font-weight:900;text-shadow:0 12px 40px rgba(0,0,0,.4)}
+.s1-title{color:#fff;font-size:92px;line-height:.95;font-weight:700;text-shadow:0 12px 40px rgba(0,0,0,.4)}
 .s1-sub{margin-top:22px;font-size:30px;font-weight:700;letter-spacing:-.02em;color:rgba(255,255,255,.96)}
 .s1-sub .hl{background:linear-gradient(120deg,var(--bc-primary-bright),#ffffff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .s1-impact{margin-top:34px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
@@ -185,6 +185,17 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s2-frame .shot{background:#fbfdf7;padding:10px;border-bottom:1px solid var(--line)}
 .s2-frame .shot img{width:100%;height:auto;display:block;border-radius:8px}
 
+/* ==================== SLIDE — COMPARATIVO ANTES/DEPOIS (claro) ==================== */
+.scmp-title{max-width:820px;margin-top:16px}
+.scmp-grid{flex:1;display:flex;align-items:center;justify-content:center;gap:36px;padding-top:10px}
+.scmp-card{width:430px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.scmp-label{display:inline-flex;align-items:center;gap:10px;padding:.55rem 1.2rem;border-radius:var(--r-pill);background:#fff;border:1px solid var(--bc-border);font-family:var(--display);font-weight:700;font-size:14px;color:var(--bc-dark);box-shadow:0 10px 24px rgba(7,64,46,.08)}
+.scmp-label .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.scmp-label .dot.old{background:var(--bc-muted)}
+.scmp-label .dot.new{background:var(--bc-primary);box-shadow:0 0 0 3px rgba(59,189,128,.22)}
+.scmp-frame{width:100%}
+.scmp-vs{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--bc-primary);color:var(--bc-primary-dark);font-size:22px;font-family:var(--display);box-shadow:0 12px 30px rgba(7,64,46,.12)}
+
 /* ==================== SLIDE 3 — MELHORIAS (claro) ==================== */
 .s3-title{max-width:880px;margin-top:16px}
 .pillars{flex:1;display:flex;align-items:center;gap:26px;padding-top:8px}
@@ -213,10 +224,10 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s4{background:linear-gradient(160deg,#f2faf4 0%,#eaf5ec 55%,#e6f1ea 100%)}
 .s4-title{max-width:900px;margin-top:16px}
 .s4-journey{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;padding-top:30px}
-.s4-track{position:absolute;left:20px;right:20px;top:66px;height:3px;background:repeating-linear-gradient(90deg,rgba(11,64,46,.18) 0 10px,transparent 10px 20px)}
+.s4-track{position:absolute;left:20px;right:20px;top:41.5px;height:3px;background:repeating-linear-gradient(90deg,rgba(11,64,46,.18) 0 10px,transparent 10px 20px)}
 .s4-stops{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
 .s4-stop{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-.s4-disc{width:86px;height:86px;border-radius:50%;background:#fff;border:4px solid var(--bc-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(7,64,46,.12);font-family:var(--mono);color:var(--bc-primary-dark);font-weight:700;gap:1px}
+.s4-disc{width:86px;height:86px;border-radius:50%;background:#fff;position:relative;z-index:1;border:4px solid var(--bc-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(7,64,46,.12);font-family:var(--mono);color:var(--bc-primary-dark);font-weight:700;gap:1px}
 .s4-disc b{font-size:20px}
 .s4-disc span{font-size:9px;text-transform:uppercase;letter-spacing:.06em;opacity:.7}
 .s4-stop.d2 .s4-disc{border-color:var(--coral);color:var(--coral-deep)}
@@ -351,7 +362,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
       <div class="s1-hero">
         <span class="eyebrow on-dark s1-eyebrow">Projeto de reformulação do site</span>
-        <h1 class="s1-title logo-font">Barracred<br>Conecta</h1>
+        <h1 class="s1-title">Barracred<br>Conecta</h1>
         <div class="s1-sub">uma <span class="hl">nova experiência digital</span></div>
         <div class="s1-impact">
           <span class="line"></span>
@@ -381,8 +392,8 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <h1 class="title s4-title">Cinco pessoas, diferentes habilidades, um único projeto</h1>
 
       <div class="s4-journey">
-        <div class="s4-track"></div>
         <div class="s4-stops">
+          <div class="s4-track"></div>
           <div class="s4-stop">
             <div class="s4-disc"><b>1</b><span>Etapa</span></div>
             <div class="s4-label">Planejamento</div>
@@ -436,6 +447,40 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
         <div class="s2-frame">
           <div class="bar"><i></i><i></i><i></i></div>
           <div class="shot"><img src="assets/images/site.antigo.png" alt="Recorte do site anterior do Barracred Conecta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE — COMPARATIVO: SITE ATUAL × NOVO SITE
+  ============================================================= -->
+  <section class="slide light scmp" data-note="7">
+    <div class="grid-bg"></div>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+
+    <div class="pad">
+      <span class="eyebrow">Comparativo</span>
+      <h1 class="title scmp-title">Do site atual ao novo site</h1>
+
+      <div class="scmp-grid">
+        <div class="scmp-card">
+          <span class="scmp-label"><span class="dot old"></span> Site atual</span>
+          <div class="s2-frame scmp-frame">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="shot"><img src="assets/images/site.antigo.png" alt="Site atual do Barracred Conecta"></div>
+          </div>
+        </div>
+
+        <div class="scmp-vs">→</div>
+
+        <div class="scmp-card">
+          <span class="scmp-label"><span class="dot new"></span> Novo site</span>
+          <div class="s2-frame scmp-frame">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="shot"><img src="assets/images/Desktop.site.png" alt="Novo site do Barracred Conecta"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -592,7 +637,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
 <!-- ==================== UI DE NAVEGAÇÃO ==================== -->
 <div class="ui" id="ui">
-  <span class="count" id="uiCount">01 / 06</span>
+  <span class="count" id="uiCount">01 / 07</span>
   <div class="dots" id="uiDots"></div>
 </div>
 <div class="hint">
@@ -626,6 +671,15 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <p><b>Mensagem central:</b> o novo site não é só uma mudança visual — reorganiza a experiência em três pilares.</p>
     <p><b>Fala:</b> “A nova proposta se apoia em três pilares. Navegação e organização: informações claras e caminhos simples. Identidade e comunicação: um visual contemporâneo e acolhedor, sem perder a credibilidade institucional. E experiência em diferentes dispositivos: boa navegação no computador e no celular.”</p>
     <p>Encerrar reforçando a frase do slide: reorganizar a experiência e fortalecer a comunicação do programa.</p>
+  </div>
+
+  <div data-notes-for="7">
+    <span class="tag">Slide 7 · Comparativo · ~30s · Apresentador 1</span>
+    <div class="ttl">Do site atual ao novo site</div>
+    <div class="tm">APRESENTADOR 1 · tempo estimado: 30 segundos</div>
+    <p><b>Mensagem central:</b> comparação visual lado a lado — o ponto de partida (site atual) e a nova proposta.</p>
+    <p><b>Fala:</b> “Para visualizar a evolução, colocamos lado a lado o site atual e o novo site — do que tínhamos como base para a nova experiência digital.”</p>
+    <p class="hl">Transição: seguir naturalmente para as principais melhorias.</p>
   </div>
 
   <div data-notes-for="4">
