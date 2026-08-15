@@ -1,4 +1,4 @@
-' <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
@@ -13,15 +13,25 @@
      · N  = abrir/fechar as notas do apresentador
      · F  = tela cheia
      · P  = imprimir / exportar em PDF (slides limpos, sem notas)
+     · Clique nos pontos de progresso para ir direto a um slide
+
+     ESTRUTURA (9 slides):
+     · 1  Abertura                   · 6  Principais melhorias
+     · 2  Equipe e processo          · 7  Comparativo
+     · 3  Contexto e objetivo        · 8  Demonstração
+     · 4  Primeira versão do site    · 9  Resultado e encerramento
+     · 5  Telas do novo site
 
      COMO EDITAR:
-     · Abra este arquivo em qualquer editor de texto.
-     · Procure pelos campos marcados com  [  ...  ]  e substitua
-       pelos nomes reais, endereço do site e QR Code.
-     · Substitua os avisos  [INSERIR CAPTURA ...]  por imagens
-       (basta trocar o <img> pelo print do site).
-     · Nomes dos integrantes: preenchidos nos slides 1, 5 e 8 —
-       substitua pelos nomes reais, se necessário.
+     · Cada <section class="slide"> é um slide; o data-note="N" se
+       conecta às notas do apresentador (data-notes-for="N").
+     · Telas dos slides 4 e 5: A.Images/ (novo) e assets/images/
+       (versão antiga). Comparativo/demonstração: Desktop.site.png
+       e Mobile.site.png.
+     · O nome da seção de cada card fica no rótulo .s-antiga-label,
+       na base das imagens dos slides 4 e 5.
+     · Nomes dos integrantes: slide 1 (badge), slide 2 (cards da
+       equipe) e slide 8 (rodapé do encerramento).
      ============================================================= -->
 
 <!-- ==================== FONTES ==================== -->
@@ -198,6 +208,17 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s-antiga-cell .s2-frame{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
 .s-antiga-cell:hover .s2-frame{transform:translateY(-8px) scale(1.02);box-shadow:0 26px 50px rgba(7,64,46,.22);border-color:rgba(15,122,86,.85)}
 .s-novo .s-antiga-cell:hover .s2-frame{box-shadow:0 26px 50px rgba(143,182,44,.3);border-color:rgba(195,227,78,1)}
+.s-antiga-cell .shot{position:relative}
+.s-antiga-label{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:.55rem .8rem;
+  text-align:center;
+  font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.02em;
+  color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.4);
+  background:linear-gradient(180deg,rgba(6,48,36,0) 0%,rgba(6,48,36,.82) 55%);
+  border-radius:0 0 12px 12px;
+}
+.s-novo .s-antiga-label{background:linear-gradient(180deg,rgba(6,48,36,0) 0%,rgba(10,61,41,.9) 55%)}
 
 /* ==================== SLIDE 6 — PRINCIPAIS MELHORIAS (claro) ==================== */
 .s3-title{max-width:880px;margin-top:16px}
@@ -294,6 +315,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s6-title{color:#fff;font-size:38px;max-width:700px;margin-top:12px}
 .s6-card{margin-top:34px;flex:1;display:flex;align-items:center;justify-content:center;gap:14px}
 .s6-card .glass{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);border-radius:var(--r-lg);backdrop-filter:blur(18px);position:relative;overflow:hidden}
+.s6-conn{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(111,224,168,.35);color:var(--bc-primary-bright);font-size:15px;font-family:var(--display);font-weight:700}
 .s6-step{flex:1;max-width:330px;min-height:210px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:30px 26px 28px;transition:transform .3s ease,box-shadow .3s ease}
 .s6-step:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,.35)}
 .s6-step::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--bc-primary),var(--lime));opacity:.9}
@@ -318,8 +340,8 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s6-col.qr .qr{width:150px;height:150px;border-radius:22px;background:#fff;display:grid;place-items:center;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
 .s6-col.qr .qr span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--bc-muted);text-align:center;line-height:1.6}
 .s6-col.qr .url{font-family:var(--mono);font-size:13px;color:var(--bc-primary-bright);letter-spacing:.02em;border:1px solid rgba(111,224,168,.35);padding:.55rem 1.1rem;border-radius:999px}
-.s6-final{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:-.01em}
-.s6-final::before,.s6-final::after{content:"";height:2px;width:90px;border-radius:99px;background:linear-gradient(90deg,transparent,rgba(111,224,168,.5))}
+.s6-final{margin-top:28px;text-align:center;font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.5}
+.s6-final::before,.s6-final::after{content:"";display:inline-block;vertical-align:middle;height:2px;width:90px;border-radius:99px;background:linear-gradient(90deg,transparent,rgba(111,224,168,.5));margin:0 16px}
 .s6-final::after{background:linear-gradient(90deg,rgba(111,224,168,.5),transparent)}
 .s6-final .hl{background:linear-gradient(120deg,var(--bc-primary-bright),#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .s6-foot{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -481,25 +503,25 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <div class="s-antiga-grid">
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="assets/images/site.antigo.1.png" alt="Tela 1 da primeira versão do site"></div>
+            <div class="shot"><img src="assets/images/site.antigo.1.png" alt="Tela 1 da primeira versão do site"><span class="s-antiga-label">Home (página inicial)</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="assets/images/site.antigo.2.png" alt="Tela 2 da primeira versão do site"></div>
+            <div class="shot"><img src="assets/images/site.antigo.2.png" alt="Tela 2 da primeira versão do site"><span class="s-antiga-label">Quem somos</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="assets/images/site.antigo.3.png" alt="Tela 3 da primeira versão do site"></div>
+            <div class="shot"><img src="assets/images/site.antigo.3.png" alt="Tela 3 da primeira versão do site"><span class="s-antiga-label">O que você vai aprender</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="assets/images/site.antigo.4.png" alt="Tela 4 da primeira versão do site"></div>
+            <div class="shot"><img src="assets/images/site.antigo.4.png" alt="Tela 4 da primeira versão do site"><span class="s-antiga-label">Faça parte & Header</span></div>
           </div>
         </div>
       </div>
@@ -523,30 +545,29 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <div class="s-antiga-grid">
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="A.Images/novo1.jpeg" alt="Tela 1 do novo site"></div>
+            <div class="shot"><img src="A.Images/novo1.jpeg" alt="Tela 1 do novo site"><span class="s-antiga-label">Quem somos</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="A.Images/novo2.jpeg" alt="Tela 2 do novo site"></div>
+            <div class="shot"><img src="A.Images/novo2.jpeg" alt="Tela 2 do novo site"><span class="s-antiga-label">Jornada</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="A.Images/novo3.jpeg" alt="Tela 3 do novo site"></div>
+            <div class="shot"><img src="A.Images/novo3.jpeg" alt="Tela 3 do novo site"><span class="s-antiga-label">O que você vai aprender</span></div>
           </div>
         </div>
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="A.Images/novo4.jpeg" alt="Tela 4 do novo site"></div>
+            <div class="shot"><img src="A.Images/novo4.jpeg" alt="Tela 4 do novo site"><span class="s-antiga-label">Projetos · Turmas</span></div>
           </div>
         </div>
       </div>
 
-      <p class="body s-antiga-note">Quatro telas principais do novo site — a nova experiência aplicada na prática.</p>
     </div>
   </section>
 
@@ -807,7 +828,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <p><b>Mensagem central:</b> apresentar rapidamente a primeira versão do site, com as quatro telas — o ponto de partida da reformulação.</p>
     <p><b>Fala:</b> “Antes das melhorias, uma breve passagem pela primeira versão do site. Nessas quatro telas, vemos como era a experiência inicial — o ponto de partida de toda a reformulação.”</p>
     <p><b>Cuidado com a linguagem:</b> apresentar a primeira versão como <span class="hl">ponto de partida</span>, nunca como algo ruim ou ultrapassado.</p>
-    <p class="hl">Momento: sem troca de apresentador — seguir para as Principais melhorias (Slide 4).</p>
+    <p class="hl">Momento: sem troca de apresentador — seguir para as Telas do novo site (Slide 5).</p>
   </div>
 
   <div data-notes-for="5">
@@ -834,7 +855,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <div class="tm">APRESENTADOR 1 · tempo estimado: 30 segundos</div>
     <p><b>Mensagem central:</b> comparação visual lado a lado — o ponto de partida (site atual) e a nova proposta.</p>
     <p><b>Fala:</b> “Para visualizar a evolução, colocamos lado a lado o site atual e o novo site — do que tínhamos como base para a nova experiência digital.”</p>
-    <p class="hl">Momento da troca: ao final deste slide, passar a fala para o Apresentador 2, que conduz a demonstração ao vivo (Slide 7).</p>
+    <p class="hl">Momento da troca: ao final deste slide, passar a fala para o Apresentador 2, que conduz a demonstração ao vivo (Slide 8).</p>
   </div>
 
   <div data-notes-for="8">
@@ -845,7 +866,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <p><b>Fala:</b> “Esta é a proposta aplicada. Vou mostrar o site ao vivo, navegando na página inicial, pelo menu, por uma seção principal e pela versão para celular — navegação, conteúdo e responsividade.”</p>
     <p><b>Demonstração (rota sugerida, ~3min30):</b> 1) página inicial e apresentação do programa; 2) menu e organização das informações; 3) uma seção principal; 4) adaptação para celular, se disponível.</p>
     <p><b>ATENÇÃO:</b> ficar atento ao tempo — o slide permanece em tela até o encerramento.</p>
-    <p class="hl">Momento: iniciar a demonstração ao vivo aqui. Apresentador 2 segue para o Slide 8 (Resultado e encerramento).</p>
+    <p class="hl">Momento: iniciar a demonstração ao vivo aqui. Apresentador 2 segue para o Slide 9 (Resultado e encerramento).</p>
   </div>
 
   <div data-notes-for="9">
