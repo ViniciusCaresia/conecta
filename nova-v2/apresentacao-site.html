@@ -31,7 +31,7 @@
      · O nome da seção de cada card fica no rótulo .s-antiga-label,
        na base das imagens dos slides 4 e 5.
      · Nomes dos integrantes: slide 1 (badge), slide 2 (cards da
-       equipe) e slide 8 (rodapé do encerramento).
+       equipe) e slide 9 (rodapé do encerramento).
      ============================================================= -->
 
 <!-- ==================== FONTES ==================== -->
@@ -111,7 +111,6 @@ body{
 
 h1,h2,h3{font-family:var(--display);color:var(--bc-dark);letter-spacing:-.035em;line-height:1.05}
 .slide h1.title{font-size:52px;font-weight:700;max-width:900px}
-.logo-font{font-family:'Coolvetica',var(--display);font-weight:900}
 
 .badge{
   display:inline-flex;align-items:center;gap:.45rem;
@@ -122,13 +121,8 @@ h1,h2,h3{font-family:var(--display);color:var(--bc-dark);letter-spacing:-.035em;
 }
 .badge.ghost{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);box-shadow:none;color:#fff}
 .badge.mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;box-shadow:none}
-.badge.coral{background:var(--coral-orange);box-shadow:0 10px 22px rgba(255,90,69,.35)}
-.badge.blue{background:var(--coral);box-shadow:0 10px 22px rgba(59,107,196,.3)}
-.badge.lime{background:var(--lime);color:var(--bc-deep);box-shadow:0 10px 22px rgba(195,227,78,.25)}
 
 .mono{font-family:var(--mono)}
-.muted{color:var(--bc-muted)}
-.tiny{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--bc-muted)}
 p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
 /* ==================== GLASS ==================== */
@@ -167,7 +161,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s1-team .badge{font-size:12px}
 .s1-count{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase}
 
-/* ==================== SLIDE 2 — CONTEXTO (claro) ==================== */
+/* ==================== SLIDE 3 — CONTEXTO (claro) ==================== */
 .light{background:var(--bc-offwhite)}
 .light .grid-bg{position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(rgba(59,189,128,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(59,189,128,.05) 1px,transparent 1px);
@@ -178,15 +172,28 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .blob-b{width:24rem;height:24rem;bottom:-6rem;left:-6rem;background:radial-gradient(circle,rgba(111,224,168,.38),transparent 70%)}
 
 .pad{padding:70px 84px;position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
-.s2-title{max-width:700px;margin-top:16px}
+.s2-title{max-width:920px;margin-top:16px}
 .s2 .pad{justify-content:center;padding-top:64px;padding-bottom:64px}
-.s2-title{max-width:920px}
-.obj-grid{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:none}
-.obj{min-height:190px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:18px;padding:24px;border-radius:22px;background:rgba(255,255,255,.9);border:1px solid var(--bc-border);box-shadow:0 16px 34px rgba(7,64,46,.08)}
-.obj .n{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));box-shadow:0 8px 18px rgba(15,122,86,.22)}
-.obj .n.b2{background:var(--coral)}
-.obj .n.b3{background:var(--coral-orange)}
+.obj-grid{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:none}
+.obj{position:relative;min-height:212px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:14px;padding:28px 26px;border-radius:24px;overflow:hidden;background:#fff;border:1px solid var(--bc-border);box-shadow:var(--bc-shadow);transition:transform .3s ease,box-shadow .3s ease}
+.obj::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--bc-primary),var(--bc-primary-bright))}
+.obj::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(59,189,128,.16),transparent 70%);pointer-events:none}
+.obj:hover{transform:translateY(-6px);box-shadow:var(--bc-shadow-strong)}
+.obj-top{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.obj-ic{flex:none;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));box-shadow:0 10px 22px rgba(15,122,86,.28)}
+.obj-ic svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.obj.b2 .obj-ic{background:linear-gradient(135deg,#4d80d9,var(--coral-deep));box-shadow:0 10px 22px rgba(59,107,196,.3)}
+.obj.b3 .obj-ic{background:linear-gradient(135deg,#ff7a66,var(--coral-deep-orange));box-shadow:0 10px 22px rgba(255,90,69,.3)}
+.obj.b2::before{background:linear-gradient(90deg,var(--coral),#7da3e6)}
+.obj.b3::before{background:linear-gradient(90deg,var(--coral-orange),#ff8f7d)}
 .obj b{font-family:var(--display);font-size:21px;line-height:1.16;color:var(--bc-dark);letter-spacing:-.02em}
+.obj-desc{font-size:12.5px;line-height:1.55;color:var(--bc-muted);font-weight:600}
+.obj-tag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;padding:.42rem .95rem;border-radius:999px;background:rgba(59,189,128,.10);border:1px solid var(--bc-border);color:var(--bc-primary-dark);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.obj-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--bc-primary)}
+.obj.b2 .obj-tag{background:rgba(59,107,196,.08);border-color:rgba(59,107,196,.22);color:var(--coral-deep)}
+.obj.b2 .obj-tag::before{background:var(--coral)}
+.obj.b3 .obj-tag{background:rgba(255,90,69,.08);border-color:rgba(255,90,69,.22);color:var(--coral-deep-orange)}
+.obj.b3 .obj-tag::before{background:var(--coral-orange)}
 .s2-frame{background:#fff;border:1px solid var(--bc-border);border-radius:var(--r-lg);box-shadow:var(--bc-shadow);overflow:hidden}
 .s2-frame .bar{height:34px;background:var(--bc-dark);display:flex;align-items:center;gap:6px;padding:0 14px}
 .s2-frame .bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
@@ -196,13 +203,12 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s2-frame .shot{background:#fbfdf7;padding:10px;border-bottom:1px solid var(--line)}
 .s2-frame .shot img{width:100%;height:auto;display:block;border-radius:8px}
 
-/* ==================== SLIDE 3 — PRIMEIRA VERSÃO (claro) ==================== */
+/* ==================== SLIDE 4 — PRIMEIRA VERSÃO (claro) ==================== */
 .s-antiga .pad,.s-novo .pad{padding-top:30px;padding-bottom:24px}
 .slide h1.s-antiga-title{font-size:36px;max-width:800px;margin-top:8px}
 .s-antiga-grid{flex:1;display:grid;grid-template-columns:repeat(2,440px);gap:14px;align-content:center;justify-content:center}
 .s-antiga-cell .s2-frame{border:2px solid rgba(15,122,86,.48);border-radius:20px;box-shadow:0 16px 34px rgba(7,64,46,.14)}
 .s-antiga-cell .shot{border-bottom:0;padding:8px;background:linear-gradient(135deg,#fff,#edf8f1)}
-.s-antiga-note{margin-top:10px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
 .s-novo .s-antiga-cell .s2-frame{border:2px solid rgba(195,227,78,.65);border-radius:20px;box-shadow:0 16px 34px rgba(143,182,44,.2)}
 .s-novo .s-antiga-cell .shot{border-bottom:0;padding:8px;background:linear-gradient(135deg,#fff,#f6fbe9)}
 .s-antiga-cell .s2-frame{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
@@ -242,19 +248,24 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s3-message .inner span{font-family:var(--display);font-size:15px;font-weight:600;color:rgba(255,255,255,.96)}
 .s3-message .inner .dot{width:8px;height:8px;border-radius:50%;background:var(--lime)}
 
-/* ==================== SLIDE 5 — EQUIPE (claro/tint) ==================== */
+/* ==================== SLIDE 2 — EQUIPE (claro/tint) ==================== */
 .s4{background:linear-gradient(160deg,#f2faf4 0%,#eaf5ec 55%,#e6f1ea 100%)}
 .s4-title{max-width:900px;margin-top:16px}
 .s4-journey{flex:1;display:flex;align-items:center;padding-top:18px}
 .s4-stops{width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.s4-stop{min-height:210px;padding:20px 16px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:13px;border-radius:22px;background:rgba(255,255,255,.9);border:1px solid var(--bc-border);box-shadow:0 14px 30px rgba(7,64,46,.08)}
-.s4-disc{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));display:grid;place-items:center;box-shadow:0 8px 18px rgba(15,122,86,.2);font-family:var(--mono);color:#fff;font-weight:700}
-.s4-disc b{font-size:15px}.s4-disc span{display:none}
-.s4-stop.d2 .s4-disc{background:var(--coral)} .s4-stop.d3 .s4-disc{background:var(--bc-primary-dark)} .s4-stop.d4 .s4-disc{background:var(--coral-orange)} .s4-stop.d5 .s4-disc{background:var(--lime-deep)}
+.s4-stop{min-height:210px;padding:20px 16px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:13px;border-radius:22px;background:rgba(255,255,255,.9);border:1px solid var(--bc-border);box-shadow:0 14px 30px rgba(7,64,46,.08);transition:transform .3s ease,box-shadow .3s ease}
+.s4-stop:hover{transform:translateY(-6px);box-shadow:0 24px 46px rgba(7,64,46,.14)}
+.s4-disc{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));box-shadow:0 12px 26px rgba(15,122,86,.28);position:relative}
+.s4-disc::before{content:"";position:absolute;inset:3px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28)}
+.s4-disc svg{width:26px;height:26px;position:relative;z-index:1;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.s4-stop.d2 .s4-disc{background:linear-gradient(135deg,#4d80d9,var(--coral-deep))}
+.s4-stop.d3 .s4-disc{background:linear-gradient(135deg,#0fa06f,var(--bc-primary-deep))}
+.s4-stop.d4 .s4-disc{background:linear-gradient(135deg,#ff7a66,var(--coral-deep-orange))}
+.s4-stop.d5 .s4-disc{background:linear-gradient(135deg,#b3d84d,var(--lime-deep))}
 .s4-role{font-size:12px;line-height:1.45;color:var(--bc-muted);margin-top:auto}.s4-role h3{font-family:var(--display);font-size:19px;line-height:1.1;color:var(--bc-primary-dark);margin:0 0 5px;letter-spacing:-.02em}
 .s4-text{margin-top:14px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto}
 
-/* ==================== SLIDE 6 — COMPARATIVO ANTES/DEPOIS (claro) ==================== */
+/* ==================== SLIDE 7 — COMPARATIVO ANTES/DEPOIS (claro) ==================== */
 .scmp-title{max-width:820px;margin-top:16px}
 .scmp-grid{flex:1;display:flex;align-items:center;justify-content:center;gap:28px;padding-top:4px}
 .scmp-card{width:455px;display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -266,7 +277,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .scmp-vs{flex:none;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--bc-dark);border:2px solid var(--lime);color:#fff;font-size:22px;font-family:var(--display);box-shadow:0 12px 30px rgba(7,64,46,.2)}
 .scmp-summary{display:flex;justify-content:center;gap:12px;margin-top:10px}.scmp-summary span{padding:.5rem .9rem;border-radius:var(--r-pill);background:rgba(255,255,255,.78);border:1px solid var(--bc-border);font-size:11px;font-weight:700;color:var(--bc-primary-dark)}
 
-/* ==================== SLIDE 7 — DEMONSTRAÇÃO (escuro/tech) ==================== */
+/* ==================== SLIDE 8 — DEMONSTRAÇÃO (escuro/tech) ==================== */
 .s5{background:linear-gradient(160deg,var(--bc-dark) 0%,var(--bc-deep) 100%);color:#fff}
 .s5::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(rgba(111,224,168,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(111,224,168,.05) 1px,transparent 1px);background-size:46px 46px;opacity:.5;
@@ -294,15 +305,11 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s5-cta{display:inline-flex;align-items:center;gap:10px;padding:.8rem 1.6rem;border-radius:var(--r-pill);background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));color:#fff;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.02em;box-shadow:0 14px 30px rgba(15,122,86,.35);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
 .s5-cta:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(15,122,86,.5)}
 .s5-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.s5-meta{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.s5-live{display:flex;align-items:center;gap:14px}
 .live-pill{display:inline-flex;align-items:center;gap:9px;padding:.6rem 1.1rem;border-radius:var(--r-pill);background:rgba(255,255,255,.08);border:1px solid rgba(111,224,168,.35);color:#fff;font-weight:700;font-size:13px}
 .live-pill .pulse{width:9px;height:9px;border-radius:50%;background:var(--lime);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(195,227,78,.5)}70%{box-shadow:0 0 0 9px rgba(195,227,78,0)}100%{box-shadow:0 0 0 0 rgba(195,227,78,0)}}
-.qr-ph{width:64px;height:64px;border-radius:14px;background:#fff;display:grid;place-items:center;padding:8px}
-.qr-ph span{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--bc-muted);text-align:center;line-height:1.5}
 
-/* ==================== SLIDE 8 — ENCERRAMENTO (escuro/elegante) ==================== */
+/* ==================== SLIDE 9 — ENCERRAMENTO (escuro/elegante) ==================== */
 .s6{background:linear-gradient(165deg,var(--bc-dark) 0%,var(--bc-deep) 100%);color:#fff}
 .s6::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(rgba(111,224,168,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(111,224,168,.05) 1px,transparent 1px);background-size:46px 46px;opacity:.4;
@@ -325,21 +332,6 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 .s6-ic svg{width:24px;height:24px;stroke:var(--bc-primary-bright);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .s6-step h4{font-family:var(--display);font-size:26px;font-weight:700;letter-spacing:-.02em;color:#fff;margin-top:16px}
 .s6-step p{font-size:14px;font-weight:600;line-height:1.55;color:rgba(255,255,255,.78);margin-top:4px;max-width:235px}
-.s6-col h4{font-family:var(--display);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;font-weight:700}
-.s6-check{list-style:none;display:flex;flex-direction:column;gap:11px}
-.s6-check li{display:flex;gap:12px;align-items:flex-start;font-family:var(--display);font-weight:600;font-size:15px;color:rgba(255,255,255,.95);line-height:1.4}
-.s6-check li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;margin-top:1px;background:linear-gradient(135deg,var(--bc-primary),var(--bc-primary-dark));display:grid;place-items:center;color:#fff;font-weight:900;font-size:12px}
-.s6-stat{display:flex;flex-direction:column;justify-content:space-between;gap:18px}.s6-stat .num{font-family:var(--display);font-size:48px;line-height:.9;font-weight:700;color:var(--bc-primary-bright);letter-spacing:-.06em}.s6-stat p{font-size:14px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.88)}.s6-stat .line{height:3px;width:52px;border-radius:99px;background:var(--lime)}
-.s6-next{display:flex;flex-direction:column;gap:10px}
-.s6-next li{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.88);line-height:1.45}
-.s6-next li .dot{flex:none;width:9px;height:9px;border-radius:50%;margin-top:5px;background:var(--bc-primary)}
-.s6-next li:nth-child(2) .dot{background:var(--coral)}
-.s6-next li:nth-child(3) .dot{background:var(--coral-orange)}
-.s6-next li small{display:block;font-weight:400;color:rgba(255,255,255,.55);font-size:12px}
-.s6-col.qr{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
-.s6-col.qr .qr{width:150px;height:150px;border-radius:22px;background:#fff;display:grid;place-items:center;padding:16px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
-.s6-col.qr .qr span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--bc-muted);text-align:center;line-height:1.6}
-.s6-col.qr .url{font-family:var(--mono);font-size:13px;color:var(--bc-primary-bright);letter-spacing:.02em;border:1px solid rgba(111,224,168,.35);padding:.55rem 1.1rem;border-radius:999px}
 .s6-final{margin-top:28px;text-align:center;font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.5}
 .s6-final::before,.s6-final::after{content:"";display:inline-block;vertical-align:middle;height:2px;width:90px;border-radius:99px;background:linear-gradient(90deg,transparent,rgba(111,224,168,.5));margin:0 16px}
 .s6-final::after{background:linear-gradient(90deg,rgba(111,224,168,.5),transparent)}
@@ -441,24 +433,24 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <div class="s4-journey">
         <div class="s4-stops">
           <div class="s4-stop">
-            <div class="s4-disc"><b>1</b><span>Etapa</span></div>
-            <div class="s4-role"><h3>Vinicius</h3>Planejamento e organização</div>
+            <div class="s4-disc"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2.5"/><path d="M9 4a3 3 0 0 1 6 0"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="s4-role"><h3>Vinícius</h3>Planejamento e organização</div>
           </div>
           <div class="s4-stop d2">
-            <div class="s4-disc"><b>2</b><span>Etapa</span></div>
+            <div class="s4-disc"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
             <div class="s4-role"><h3>Stefani</h3>Organização do conteúdo</div>
           </div>
           <div class="s4-stop d3">
-            <div class="s4-disc"><b>3</b><span>Etapa</span></div>
+            <div class="s4-disc"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></div>
             <div class="s4-role"><h3>João Pedro</h3>Desenvolvimento back-end</div>
           </div>
           <div class="s4-stop d4">
-            <div class="s4-disc"><b>4</b><span>Etapa</span></div>
+            <div class="s4-disc"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="5"/><path d="M12 8V6M9 4l2 2M15 4l-2 2"/><path d="M7.5 11h-3M16.5 11h3M7.5 15h-3M16.5 15h3"/></svg></div>
             <div class="s4-role"><h3>Pietro</h3>Testes e ajustes</div>
           </div>
           <div class="s4-stop d5">
-            <div class="s4-disc"><b>5</b><span>Etapa</span></div>
-            <div class="s4-role"><h3>Ewerton</h3>Identidade Visual</div>
+            <div class="s4-disc"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/><circle cx="13.5" cy="6.8" r="1.1"/><circle cx="17.3" cy="10.4" r="1.1"/><circle cx="8.7" cy="7.6" r="1.1"/><circle cx="6.7" cy="12.4" r="1.1"/></svg></div>
+            <div class="s4-role"><h3>Ewerton</h3>Identidade visual</div>
           </div>
         </div>
       </div>
@@ -480,9 +472,32 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <h1 class="title s2-title">Evoluir o site para fortalecer a conexão com o público</h1>
 
       <div class="obj-grid">
-        <div class="obj"><span class="n">1</span><b>Facilitar o acesso às informações</b></div>
-        <div class="obj"><span class="n b2">2</span><b>Aproximar a comunicação do público jovem</b></div>
-        <div class="obj"><span class="n b3">3</span><b>Valorizar a identidade e as ações do programa</b></div>
+        <div class="obj">
+          <div class="obj-top">
+            <span class="obj-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg></span>
+            <b>Facilitar o acesso às informações</b>
+            <span class="obj-desc">Informações claras, organizadas e fáceis de encontrar em poucos cliques.</span>
+          </div>
+          <span class="obj-tag">Melhor acesso</span>
+        </div>
+
+        <div class="obj b2">
+          <div class="obj-top">
+            <span class="obj-ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <b>Aproximar a comunicação do público jovem</b>
+            <span class="obj-desc">Linguagem próxima, leve e conectada com o jeito jovem de se comunicar.</span>
+          </div>
+          <span class="obj-tag">Comunicação</span>
+        </div>
+
+        <div class="obj b3">
+          <div class="obj-top">
+            <span class="obj-ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4z"/></svg></span>
+            <b>Valorizar a identidade e as ações do programa</b>
+            <span class="obj-desc">Uma identidade visual que destaca a marca e as ações do Conecta.</span>
+          </div>
+          <span class="obj-tag">Identidade</span>
+        </div>
       </div>
 
     </div>
@@ -521,12 +536,11 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
         <div class="s-antiga-cell">
           <div class="s2-frame">
-            <div class="shot"><img src="assets/images/site.antigo.4.png" alt="Tela 4 da primeira versão do site"><span class="s-antiga-label">Faça parte & Header</span></div>
+            <div class="shot"><img src="assets/images/site.antigo.4.png" alt="Tela 4 da primeira versão do site"><span class="s-antiga-label">Faça parte & Rodapé</span></div>
           </div>
         </div>
       </div>
 
-      <p class="body s-antiga-note">Quatro telas da primeira versão do site — o ponto de partida de toda a reformulação.</p>
     </div>
   </section>
 
@@ -586,7 +600,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
       <div class="pillars">
         <div class="pillar">
           <div class="ic">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13 13l-4.5 2.5L11 11z"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           </div>
           <span class="k">Pilar 01</span>
           <h3>Navegação e organização</h3>
@@ -595,7 +609,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
         <div class="pillar b2">
           <div class="ic">
-            <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="14" height="4.5" rx="1.5"/><rect x="3" y="9.5" width="11" height="4.5" rx="1.5"/><rect x="3" y="16" width="14" height="4.5" rx="1.5"/><circle cx="19" cy="12" r="4"/><path d="M19 10.5v3M17.5 12h3"/></svg>
           </div>
           <span class="k">Pilar 02</span>
           <h3>Mais conteúdo e funcionalidades</h3>
@@ -604,11 +618,11 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
         <div class="pillar b3">
           <div class="ic">
-            <svg viewBox="0 0 24 24"><path d="M7 3h10l4 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></svg>
           </div>
           <span class="k">Pilar 03</span>
           <h3>Identidade visual modernizada</h3>
-          <span class="tick">Visual mais atual e conectado à identidade do conecta</span>
+          <span class="tick">Visual mais atual e conectado à identidade do Conecta</span>
         </div>
       </div>
 
@@ -622,7 +636,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
   </section>
 
   <!-- ============================================================
-       SLIDE 6 — COMPARATIVO: SITE ATUAL × NOVO SITE
+       SLIDE 7 — COMPARATIVO: SITE ATUAL × NOVO SITE
   ============================================================= -->
   <section class="slide light scmp" data-note="7">
     <div class="grid-bg"></div>
@@ -660,7 +674,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
   </section>
 
   <!-- ============================================================
-       SLIDE 7 — DEMONSTRAÇÃO DO SITE
+       SLIDE 8 — DEMONSTRAÇÃO DO SITE
   ============================================================= -->
   <section class="slide s5" data-note="8">
     <div class="glow g1"></div>
@@ -708,7 +722,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
   </section>
 
   <!-- ============================================================
-       SLIDE 8 — RESULTADO E ENCERRAMENTO
+       SLIDE 9 — RESULTADO E ENCERRAMENTO
   ============================================================= -->
   <section class="slide s6" data-note="9">
     <div class="glow g1"></div>
@@ -781,7 +795,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
 
 <!-- ==================== UI DE NAVEGAÇÃO ==================== -->
 <div class="ui" id="ui">
-  <span class="count" id="uiCount">01 / 08</span>
+  <span class="count" id="uiCount">01 / 09</span>
   <div class="dots" id="uiDots"></div>
 </div>
 <button class="ui-toggle" id="uiToggle" title="Ocultar/mostrar a navegação" aria-label="Ocultar ou mostrar a navegação dos slides">
@@ -807,7 +821,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <span class="tag">Slide 2 · Equipe e processo · ~1min · Apresentador 1</span>
     <div class="ttl">Cinco pessoas, diferentes habilidades, um único projeto</div>
     <div class="tm">APRESENTADOR 1 · tempo estimado: 1 minuto</div>
-    <p><b>Mensagem central:</b> trabalho coletivo — cinco integrantes, quatro etapas de processo, nenhuma estrutura hierárquica.</p>
+    <p><b>Mensagem central:</b> trabalho coletivo — cinco integrantes, cinco etapas de processo, nenhuma estrutura hierárquica.</p>
     <p><b>Fala:</b> “O projeto foi construído de forma colaborativa: planejamento, organização do conteúdo, design e desenvolvimento, e testes e ajustes. Cinco pessoas, diferentes habilidades, um único projeto.”</p>
     <p class="hl">Momento: sem troca de apresentador — o Apresentador 1 segue para o Contexto e objetivo (Slide 3).</p>
   </div>
@@ -845,7 +859,7 @@ p.body{font-size:15px;line-height:1.75;color:var(--bc-muted)}
     <div class="ttl">Uma experiência mais clara, atual e conectada</div>
     <div class="tm">APRESENTADOR 1 · tempo estimado: 1 minuto</div>
     <p><b>Mensagem central:</b> o novo site não é só uma mudança visual — reorganiza a experiência em três pilares.</p>
-    <p><b>Fala:</b> “A nova proposta se apoia em três pilares. Navegação e organização: informações claras e caminhos simples. Identidade e comunicação: um visual contemporâneo e acolhedor, sem perder a credibilidade institucional. E experiência em diferentes dispositivos: boa navegação no computador e no celular.”</p>
+    <p><b>Fala:</b> “A nova proposta se apoia em três pilares. Navegação e organização: informações claras e caminhos simples. Mais conteúdo e funcionalidades: novas seções ampliam a experiência do usuário. E identidade visual modernizada: um visual contemporâneo e acolhedor, sem perder a credibilidade institucional.”</p>
     <p>Encerrar reforçando a frase do slide: reorganizar a experiência e fortalecer a comunicação do programa.</p>
   </div>
 
